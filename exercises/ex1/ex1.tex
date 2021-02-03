@@ -1,0 +1,144 @@
+%=======================02-713 LaTeX template, following the 15-210 template==================
+%
+% You don't need to use LaTeX or this template, but you must turn your homework in as
+% a typeset PDF somehow.
+%
+% How to use:
+%    1. Update your information in section "A" below
+%    2. Write your answers in section "B" below. Precede answers for all 
+%       parts of a question with the command "\question{n}{desc}" where n is
+%       the question number and "desc" is a short, one-line description of 
+%       the problem. There is no need to restate the problem.
+%    3. If a question has multiple parts, precede the answer to part x with the
+%       command "\part{x}".
+%    4. If a problem asks you to design an algorithm, use the commands
+%       \algorithm, \correctness, \runtime to precede your discussion of the 
+%       description of the algorithm, its correctness, and its running time, respectively.
+%    5. You can include graphics by using the command \includegraphics{FILENAME}
+%
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\newtheorem{theorem}{Theorem}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\setlength{\headheight}{13.6pt}
+\newcommand\question[2]{\vspace{.25in}\hrule\textbf{#1}: #2\vspace{.5em}\hrule\vspace{.10in}}
+\renewcommand\part[1]{\vspace{.10in}\textbf{(#1)}\par}
+\newcommand\algorithm{\vspace{.10in}\textbf{Algorithm: }}
+\newcommand\correctness{\vspace{.10in}\textbf{Correctness: }}
+\newcommand\runtime{\vspace{.10in}\textbf{Running time: }}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\pagestyle{fancyplain}
+\lhead{\textbf{\NAME}}
+\chead{\textbf{{\COURSE} Lesson \HWNUM \text{ }Exercises}}
+\rhead{\today}
+\begin{document}\raggedright
+%Section A==============Change the values below to match your information==================
+\newcommand\NAME{Eric Altenburg}  % your name
+\newcommand\COURSE{MA-240}
+\newcommand\HWNUM{1}              % the homework number
+%Section B==============Put your answers to the questions below here=======================
+
+% no need to restate the problem --- the graders know which problem is which,
+% but replacing "The First Problem" with a short phrase will help you remember
+% which problem this is when you read over your homeworks to study.
+
+\textit{Pledge: I pledge my honor that I have abided by the Stevens Honor System.} -Eric Altenburg
+
+\question{1}{Let us remind ourselves of the conditions under which an implication $P \Rightarrow Q$ is true, and therefore of how we might go about proving an implication. Fill in the third column of the following \textit{truth table} with the letters T (for "true") or F (for "false"). The purpose of the table is to indicate how the truth or falsehood of an implication $P \Rightarrow Q$ depends on the truth or falsehood of the propositions $P \text{ and } Q$}
+	\begin{table}[!h]
+		\centering
+		\begin{tabular}{|c|c|c|}
+		\hline
+		$P$ & $Q$ & $P \Rightarrow Q$\\
+		\hline
+		T & T & T\\
+		\hline
+		T & F & F\\
+		\hline
+		F & T & T\\
+		\hline
+		F & F & T\\
+		\hline
+		\end{tabular}
+	\end{table}
+
+
+\question{2}{Have a look at the first and third rows of your filled-in truth table. What strategy do they suggest for providing an implication $P \Rightarrow Q$?}
+	For the first column, if both the first proposition is true along with the second, then it would follow suit that the implication would be true as well. In an example I used to help with filling in the third column, defining the propositions $P$ as "it is raining" and $Q$ as "I am going to drive to work" then the first column reads as: \textit{if it is raining, then I am going to drive to work}. This logically makes sense as I would not want to get wet.
+
+	As for the third column, using the same definitions for $P$ and $Q$, the implication would read: \textit{if it is not raining, then I am going to drive to work}. This still makes sense as I can still drive to work, it is not solely dependent on whether it rains or not. 
+
+	It seems as though for both of these columns, proposition $Q$ is true and with this, all following implications seem to have the rule of if the second proposition is true, then the implication is true no matter the state of the first proposition.
+
+\question{3}{Now have a look at the third and fourth rows of your truth table. What strategy do they suggest for proving an implication $P \Rightarrow Q$?}
+
+	Using the same definitions from the previous question for $P$ and $Q$, the fourth implication would read: \textit{if it is not raining, then I am not going to drive to work}. This once again is true as if it is not raining, then I do not necessarily have to drive to work.
+
+	The difference with rows 3 and 4 as opposed to 1 and 3 is now the first proposition is false, and because of this the implication—regardless of what the second proposition is—will always be true.
+
+\newpage
+
+\question{4}{Prove the following theorems. (Note that $\R$ denotes the set of real numbers and $\N$ denotes the set of natural numbers.)}
+	\begin{theorem}
+		Let $x \in \R$. If $0 < x < 1$, then $x^2-2x+2 \ne 0$.
+	\end{theorem}
+
+	\begin{proof}
+		The equation $x^2-2x+2 \ne 0$ only holds true if the first two terms $x^2-2x$ does not equals $-2$. Solving for x would allow us to see what values would possibly make the first term equal $-2$.
+		\begin{align*}
+			x^2-2x &= -2\\
+			x(x-2) &= -2\\
+			x &= -2 ,\, x = -4
+		\end{align*}
+		Given the constraints of the first proposition of $0<x<1$, it would not be possible for the second proposition to ever be false making it inherently true. Given the examples in the truth table, since the second proposition is always true, the implication is as well.
+	\end{proof}
+
+	\begin{theorem}
+		Let $n \in \N$. If $|n-1|+|n+1| \le 1$, then $|n^2-1| \le 4$.
+	\end{theorem}
+
+	\begin{proof}
+		Let $P$ be defined as $|n-1|+|n+1| \le 1$ in the above theorem.
+		Based on lines 3 and 4 in the truth table from question 1, if the first proposition if false, then the implication is inherently true. For this implication, $P$ will never be true because the numbers in $\N$ begin at $1$. Therefore, using $1$ in $P(1)$ would give $2 \nleq 1$. And for each subsequent number in $\N$, the inequalities would be as follows:
+		\begin{align*}
+			P(2) &= 4 \nleq 1\\
+			P(3) &= 6 \nleq 1\\
+			P(4) &= 8 \nleq 1\\
+			P(5) &= 10 \nleq 1\\
+			&\cdots\\
+			P(d) s.t. \, d \in \N: \, P(d) &= 2d \nleq 1\\
+		\end{align*}
+
+		Therefore, since $P$ will always be false, the implication will always result to true.
+	\end{proof}
+
+\question{5}{The Most widely-used proof technique in mathematics is called \textit{direct proof}. It consists of the following. To prove an implication $P(x) \Rightarrow Q(x)$, where $x \in S$ is a variable that is allowed to range over some set $S$, show that for each $x \in S$ that makes $P(x)$ true, $Q(x)$ is true as well. Use a direct proof to prove the following theorem.}
+	\begin{theorem}
+		Let $n \in \Z$. If $n$ is even, then $n^2$ is even.
+	\end{theorem}
+
+	\begin{proof}
+		Any even number can be written in the form $a=2b$ where a is the even number and b is some factor. 
+
+		When considering the second proposition in the theorem ($n^2$ is even), we can initially rewrite $n = 2k$ which would then mean the equation in the second proposition is $(2k)^2 = 4k^2$. This can be rewritten once more to show that $4k^2 = 2(2k^2)$ which follows the same idea for rewriting terms if they are even. 
+
+		This is the same as rewriting the even variable $a$ to $a=2b$ where $b$ here is essentially the $2k^2$ in $2(2k^2)$.
+	\end{proof}
+
+\question{6}{Let $P$ and $Q$ be propositions. Then $P \iff Q$ denotes a \textit{double implication}, or a \textit{bi-implication}. it is shorthand for "$P \Rightarrow Q \text{ and } Q \Rightarrow P$". It can be thought of as an \textit{if-and-only-if statement} and translated into everyday English as "$P$ if and only if $Q$". If it is true that $P \iff Q$, then $P$ $Q$ are said to be \textit{logically equivalent.} \newline
+Now suppose you'd like to prove that four propositions $P$< $Q$, $R$, and $S$ are \textit{all} logically equivalent to one another. How many individual implications would you have to prove?}
+	Given that you need to prove 2 implications for an IFF, and you have 4 different propositions trying to prove they are all equal you can use combinatorics to find the total number of combinations for the propositions and them multiply that by 2 for proving both ways of the implication in an IFF.
+	\begin{align*}
+		C(4, 2) &= \frac{4!}{2! \cdot (4-2)!}\\
+		&= \frac{24}{4}\\
+		&= 6 \text{ combinations}
+	\end{align*}
+	Given that we do two proofs going both ways the total number of implications is 12.
+	
+\end{document}
