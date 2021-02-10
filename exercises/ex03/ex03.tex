@@ -1,0 +1,173 @@
+%=======================02-713 LaTeX template, following the 15-210 template==================
+%
+% You don't need to use LaTeX or this template, but you must turn your homework in as
+% a typeset PDF somehow.
+%
+% How to use:
+%    1. Update your information in section "A" below
+%    2. Write your answers in section "B" below. Precede answers for all 
+%       parts of a question with the command "\question{n}{desc}" where n is
+%       the question number and "desc" is a short, one-line description of 
+%       the problem. There is no need to restate the problem.
+%    3. If a question has multiple parts, precede the answer to part x with the
+%       command "\part{x}".
+%    4. If a problem asks you to design an algorithm, use the commands
+%       \algorithm, \correctness, \runtime to precede your discussion of the 
+%       description of the algorithm, its correctness, and its running time, respectively.
+%    5. You can include graphics by using the command \includegraphics{FILENAME}
+%
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\newtheorem{theorem}{Theorem}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\setlength{\headheight}{13.6pt}
+\newcommand\question[2]{\vspace{.25in}\hrule\textbf{#1}: #2\vspace{.5em}\hrule\vspace{.10in}}
+\renewcommand\part[1]{\vspace{.10in}\textbf{(#1)}\par}
+\newcommand\algorithm{\vspace{.10in}\textbf{Algorithm: }}
+\newcommand\correctness{\vspace{.10in}\textbf{Correctness: }}
+\newcommand\runtime{\vspace{.10in}\textbf{Running time: }}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\pagestyle{fancyplain}
+\lhead{\textbf{\NAME}}
+\chead{\textbf{{\COURSE} Lesson \HWNUM \text{ }Exercises}}
+\rhead{\today}
+\begin{document}\raggedright
+%Section A==============Change the values below to match your information==================
+\newcommand\NAME{Eric Altenburg}  % your name
+\newcommand\COURSE{MA-240}
+\newcommand\HWNUM{3}              % the homework number
+%Section B==============Put your answers to the questions below here=======================
+
+% no need to restate the problem --- the graders know which problem is which,
+% but replacing "The First Problem" with a short phrase will help you remember
+% which problem this is when you read over your homeworks to study.
+
+\textbf{Pledge:} \textit{I pledge my honor that I have abided by the Stevens Honor System.} -Eric Altenburg
+
+\question{1}{Let $x, y \in \Z$. Prove that if $xy$ is odd, then $x$ is odd an $y$ is odd.}
+
+\begin{proof}
+	To prove this claim, we consider the possible combinations of $x$ and $y$ being odd and even.
+
+	Case: $x$ is odd and $y$ is even.
+
+	Let $x = 2j+1$ and $y=2k$ where $j, k \in \Z$.
+
+	\begin{align*}
+		xy &= (2j+1)(2k)\\
+		&= 4jk + 2k\\
+		&= 2 (2jk + k)
+	\end{align*}
+
+	This is an even number.
+
+	Case: $x$ is odd and $y$ is odd.
+
+	Let $x = 2j+1$ and $y=2k+1$ where $j, k \in \Z$.
+
+	\begin{align*}
+		xy &= (2j+1)(2k+1)\\
+		&= 4jk + 2j + 2k + 1\\
+		&= 2 (2jk + j+k) + 1
+	\end{align*}
+
+	This is an odd number.
+
+	Case: $x$ is even and $y$ is even.
+
+	Let $x = 2j$ and $y=2k$ where $j, k \in \Z$.
+
+	\begin{align*}
+		xy &= (2j)(2k)\\
+		&= 4jk\\
+		&= 2 (2jk)
+	\end{align*}
+
+	This is an even number.
+
+	Case: $x$ is even and $y$ is odd.
+
+	Let $x = 2j$ and $y=2k+1$ where $j, k \in \Z$.
+
+	\begin{align*}
+		xy &= (2j)(2k+1)\\
+		&= 4jk + 2j\\
+		&= 2 (jk + j)
+	\end{align*}
+
+	This is an even number.
+
+	The only odd solution is for both $x$ and $y$ to be odd.
+\end{proof}
+
+\question{2}{Prove that if $n$ is a nonnegative integer, then $2^n + 6^n$ is an integer.}
+
+\begin{proof}
+	To prove this claim, we consider cases of $n$ being 0 and a nonnegative integer.
+
+	Case: $n = 0$
+
+	\begin{align*}
+		2^n + 6^n &= 2^0 + 6^0\\
+		&= 1 + 1\\
+		&= 2
+	\end{align*}
+
+	2 is of course even.
+
+	Case: $n \ge 0$
+
+	\begin{align*}
+		2^n + 6^n &= 2^n + (2 \cdot 3)^n\\
+		&= 2^n + 2^n3^n\\
+		&= (2 \cdot 2^{n-1}) + (2 \cdot 2^{n-1} \cdot 3^n)\\
+		&= 2(2^{n-1} + 2^{n-1}3^n)
+	\end{align*}
+
+	This is the definition of an even number. In both cases, the end result is always an even number.
+\end{proof}
+
+\question{3}{The \textit{triangle inequality} asserts that for any $x, y, z \in \R$, we have $|x-y| \le |x-z| + |y-z|$.}
+
+\part{What's the intuitive idea behind this inequality? What is it trying to say, and where do you think it gets its name from?}
+
+Well based on the name alone, I believe it is referring to the sides of a triangle. The LHS takes the difference of any two sides and in every case it must be $\le$ to the difference of those two sides subtracted from the third which are then added together. It seems that it has to do with the length of the third side so it does not exceed the difference of the other two.
+
+\part{Suppose you want to prove the triangle inequality by cases. List the different cases you would need to prove.}
+
+Based on the idea that the theorem seems to rely on the difference of two sides being less than the differences of them with the third side, there would be four cases.
+
+Case 1: $x > y, z$
+
+Case 2: $y > x, z$
+
+Case 3: $z > x, y$
+
+Case 4: $x = y = z$
+
+I feel like this would adequately cover all possible combinations of triangles that can be formed.
+
+\part{Try to prove at least some of the cases you listed in the previous step.}
+
+I am not sure how to prove the first three cases; I seem to get hung up on trying to work with the inequalities with the absolute values of the differences of the sides.
+
+Though with case 4:
+
+Since $x = y = z$
+
+\begin{align*}
+	|x-y| \le |x-z| + |y-z| &= |x-x| \le |x-x| + |x-x\\
+	&= 0 \le 0 + 0\\
+	&= 0 \le 0
+\end{align*}
+
+Therefore, with all the values of $x, y, z$ being the same, an equilateral triangle would follow the triangle inequality theorem.\qed
+
+	
+\end{document}
