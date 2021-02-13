@@ -284,3 +284,4 @@ TSWLatexianTemp*
 #*Notes.bib
 
 template.*
+*.DS_Store
