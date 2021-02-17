@@ -1,0 +1,118 @@
+%=======================02-713 LaTeX template, following the 15-210 template==================
+%
+% You don't need to use LaTeX or this template, but you must turn your homework in as
+% a typeset PDF somehow.
+%
+% How to use:
+%    1. Update your information in section "A" below
+%    2. Write your answers in section "B" below. Precede answers for all 
+%       parts of a question with the command "\question{n}{desc}" where n is
+%       the question number and "desc" is a short, one-line description of 
+%       the problem. There is no need to restate the problem.
+%    3. If a question has multiple parts, precede the answer to part x with the
+%       command "\part{x}".
+%    4. If a problem asks you to design an algorithm, use the commands
+%       \algorithm, \correctness, \runtime to precede your discussion of the 
+%       description of the algorithm, its correctness, and its running time, respectively.
+%    5. You can include graphics by using the command \includegraphics{FILENAME}
+%
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\newtheorem{theorem}{Theorem}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\setlength{\headheight}{13.6pt}
+\newcommand\question[2]{\vspace{.25in}\hrule\textbf{#1}: #2\vspace{.5em}\hrule\vspace{.10in}}
+\renewcommand\part[1]{\vspace{.10in}\textbf{(#1)}\par}
+\newcommand\algorithm{\vspace{.10in}\textbf{Algorithm: }}
+\newcommand\correctness{\vspace{.10in}\textbf{Correctness: }}
+\newcommand\runtime{\vspace{.10in}\textbf{Running time: }}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\pagestyle{fancyplain}
+\lhead{\textbf{\NAME}}
+\chead{\textbf{{\COURSE} Lesson \HWNUM \text{ }Exercises}}
+\rhead{\today}
+\begin{document}\raggedright
+%Section A==============Change the values below to match your information==================
+\newcommand\NAME{Eric Altenburg}  % your name
+\newcommand\COURSE{MA-240}
+\newcommand\HWNUM{4}              % the homework number
+%Section B==============Put your answers to the questions below here=======================
+
+% no need to restate the problem --- the graders know which problem is which,
+% but replacing "The First Problem" with a short phrase will help you remember
+% which problem this is when you read over your homeworks to study.
+
+\textbf{Pledge:} \textit{I pledge my honor that I have abided by the Stevens Honor System.} -Eric Altenburg
+
+\question{1}{Prove that there does not exist a smallest positive real number.}
+
+\begin{proof}
+	Assume there exists a number $x$ which is the smallest positive real number. You can then take $x$ and divide it by 2 to get an even smaller number which contradicts the initial assumption of it being the smallest real number.
+\end{proof}
+
+
+\question{2}{Prove that the sum of a rational number and an irrational number is irrational.}
+
+\begin{proof}
+	Assume the sum of a rational number and an irrational number would be rational. This sum can be represented as $\frac{a}{b} + x = \frac{c}{d}$ where $\frac{a}{b}$ is a rational number, $x$ is an irrational number, and $\frac{c}{d}$ is also a rational number.
+
+	\begin{align*}
+		\frac{a}{b} + x &= \frac{c}{d}\\
+		x &= \frac{c}{d} - \frac{a}{b}\\
+		x &= \frac{bc-ad}{db}
+	\end{align*}
+
+	$a, b, c, d$ are all integers as they form rational numbers, therefore, the quantity $x = \frac{bc-ad}{db}$ would also be rational which contradicts the assumption that $x$ was originally an irrational number.
+\end{proof}
+
+\question{3}{Consider the following proof. Is this proof by contradiction correct? Explain.}
+
+\begin{theorem}
+	Let $n \in \Z$. If $n^2$ is odd, then $n$ is odd.
+\end{theorem}
+
+\begin{proof}
+	Assume that the claim is false, namely that there exists an even integer $n$ such that $n^2$ is odd. Since $n$ is even, $n=2k$ for some $k \in \Z$ which means that $n^2 = 4k^2 = 2(2k^2)$, which is an even number. But this is a contradiction because we assumed that $n^2$ is odd. Therefore, the claim is true.
+\end{proof}
+
+This proof is correct to me because the logical equivalence to an implication $P \Rightarrow Q$ is equivalent to $\lnot P \lor Q$ because of their identical truth tables. And by negating this for the contradiction we get, $P \land \lnot Q$. In this proof we say $P$ which is "If $n^2$ is odd" is still true and prove that $\lnot Q$ is false which would be "$n$ is even". And if $P \land \lnot Q$ is false, then the proof would be complete.
+
+It starts out by saying since $n$ is even, $n=2k$ and then $n^2$ is then even even though we assumed it was odd. This means our $P$ is now false, and the $Q$ is even which means $P \land \lnot Q$ is false which is a valid proof by contradiction.
+
+\question{4}{Prove that if $p$ is a prime number, then $\sqrt{p}$ is irrational.}
+
+\begin{proof}
+	Assume $\sqrt{p}$ is rational and can be expressed by $\sqrt{p} = \frac{a}{b}$ where $a, b$ are co-primes.
+
+	\begin{align*}
+		\sqrt{p} &= \frac{a}{b}\\
+		p &= \frac{a^2}{b^2}\\
+		b^2p &= a^2 \text{\quad $p$ is a factor in $a^2$, }a = kp \text{ for some $k$}\\
+		b^2p &= (kp)^2\\
+		b^2p &= k^2p^2\\
+		b^2 &= k^2p \text{\quad $p$ is a factor in $b^2$ and b is a multiple of $p$}
+	\end{align*}
+
+	This is a contradiction as $a$ and $b$ cannot have a common factor $p$ since it was stated that $a$ and $b$ were co-prime.
+\end{proof}
+
+\question{5}{The principle of the excluded middle asserts that, given any proposition $P$, either $P$ is true or $\lnot P$ is true. Explain how this principle is crucial to proofs by contradiction. Do you think it's sensible to reject the principle of the excluded middle?}
+
+The excluded middle principle is crucial in proofs by contradiction in that any proposition $P$ is either true OR false, it cannot be both. So by taking a proposition that may be true, and assuming it is false to do a proof by contradiction to then later prove that the false proposition is also true is not allowed. Both of the propositions are true. Rejecting the principle would not be sensible because then propositions would be able to be both true and false at the same time, which given the definition of an implication with a truth table would get rid of all logic and does not allow for any implication to have a base of what is true and false. 
+	
+
+
+
+
+
+
+
+
+
+\end{document}
