@@ -41,7 +41,7 @@
 %Section A==============Change the values below to match your information==================
 \newcommand\NAME{Eric Altenburg}  % your name
 \newcommand\COURSE{MA-240}
-\newcommand\HWNUM{1}              % the homework number
+\newcommand\HWNUM{1 (Corrections)}              % the homework number
 %Section B==============Put your answers to the questions below here=======================
 
 % no need to restate the problem --- the graders know which problem is which,
@@ -50,15 +50,39 @@
 
 \textbf{Pledge:} \textit{I pledge my honor that I have abided by the Stevens Honor System.} -Eric Altenburg
 
-\question{1}{Write a proof for the following theorem:
+\question{1}{Write a proof for the following theorem:}
+
 \begin{theorem}
 	For any natural number $n$, the number $n^2-n$ is even.
-\end{theorem}}
+\end{theorem}
 
 \begin{proof}
-	Let $Q(x) = n^2-n$. We can then rewrite this to be $Q(x) = n(n-1)$.
+	Case 1: Let $n$ be an even natural number.
 
-	Since $n$ can either be even or odd given the first proposition, then $n$ will end up being multiplied by its opposite type—be it even or odd—as seen in $Q(x)$. Therefore, regardless of the number chosen, an even number and an odd number will be multiplied together which always forms an even number.
+	Because $n$ is even, it can be written as $n=2k$ where $k \in \N$. Then:
+
+	\begin{align*}
+		n^2-n &= (2k)^2-(2k)\\
+		&= 4k^2-2k\\
+		&= 2(2k^2-k)
+	\end{align*}
+
+	This is the definition of an even number.
+
+	Case 2: Let $n$ be an odd natural number.
+
+	Because $n$ is odd, it can be rewritten as $n=2k+1$ where $k \in \N$. Then:
+
+	\begin{align*}
+		n^2-n &= (2k+1)^2 - (2k+1)\\
+		&= 4k^2 + 4k + 1 - 2k -1\\
+		&= 4k^2 + 2k\\
+		&= 2(2k^2+k)
+	\end{align*}
+
+	This is the definition of an even number.
+
+	Since these two cases cover all possible values of $n$, it follows that $n^2-n$ always results to being even.
 \end{proof}
 
 
