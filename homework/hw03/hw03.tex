@@ -1,0 +1,97 @@
+%=======================02-713 LaTeX template, following the 15-210 template==================
+%
+% You don't need to use LaTeX or this template, but you must turn your homework in as
+% a typeset PDF somehow.
+%
+% How to use:
+%    1. Update your information in section "A" below
+%    2. Write your answers in section "B" below. Precede answers for all 
+%       parts of a question with the command "\question{n}{desc}" where n is
+%       the question number and "desc" is a short, one-line description of 
+%       the problem. There is no need to restate the problem.
+%    3. If a question has multiple parts, precede the answer to part x with the
+%       command "\part{x}".
+%    4. If a problem asks you to design an algorithm, use the commands
+%       \algorithm, \correctness, \runtime to precede your discussion of the 
+%       description of the algorithm, its correctness, and its running time, respectively.
+%    5. You can include graphics by using the command \includegraphics{FILENAME}
+%
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\newtheorem{theorem}{Theorem}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\setlength{\headheight}{13.6pt}
+\newcommand\question[2]{\vspace{.25in}\hrule\textbf{#1}: #2\vspace{.5em}\hrule\vspace{.10in}}
+\renewcommand\part[1]{\vspace{.10in}\textbf{(#1)}\par}
+\newcommand\algorithm{\vspace{.10in}\textbf{Algorithm: }}
+\newcommand\correctness{\vspace{.10in}\textbf{Correctness: }}
+\newcommand\runtime{\vspace{.10in}\textbf{Running time: }}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\pagestyle{fancyplain}
+\lhead{\textbf{\NAME}}
+\chead{\textbf{{\COURSE} Homework \HWNUM}}
+\rhead{\today}
+\begin{document}\raggedright
+%Section A==============Change the values below to match your information==================
+\newcommand\NAME{Eric Altenburg}  % your name
+\newcommand\COURSE{MA-240}
+\newcommand\HWNUM{3}              % the homework number
+%Section B==============Put your answers to the questions below here=======================
+
+% no need to restate the problem --- the graders know which problem is which,
+% but replacing "The First Problem" with a short phrase will help you remember
+% which problem this is when you read over your homeworks to study.
+
+\textbf{Pledge:} \textit{I pledge my honor that I have abided by the Stevens Honor System.} -Eric Altenburg
+
+\question{1}{Three gameshow contestants are invited to compete for a fabulous prize according to the following terms. All three contestants will be blindfolded, after which a dot colored either red or blue will be painted on their forehead of at least one of the other two contestants. The first contestant to correctly identify the color of the dot on their own forehead wins the prize. 
+
+After blindfolding the contestants, the gameshow host paints a red dot on the foreheads of all three of them. The host then removes the blindfolds, upon which each contestant raises their hand. After some time goes by, one of the contestants exclaims "The dot on my forehead is red!".
+
+How did the contestant know? Present the contestant's reasoning in the form of a proof.}
+
+\begin{proof}
+	Let the contestant who exclaimed "The dot on my forehead is red!" be contestant $A$ with the other two being $B$ and $C$. 
+
+	Because all the contestants raised their hands after the blindfold was removed, that means there are at least 2 red dots present. If there were no red dots, then no one would have raised their hand. Additionally, if there was only 1 red dot, then the 2 other contestants would have seen it and raised their hands. So lets consider the possibilities $A$ must have been thinking after seeing everyone raise their hands. If $A$ saw both $B$ and $C$ with red dots on their foreheads, then $A$ does not have too much information to go off of initially since they can either have a red dot or a blue dot. Also, because it was later revealed that the gameshow host painted 3 red dots, we will only consider the case where $A$ sees 2 red dots on the foreheads of $B$ and $C$.
+
+	Case 1: $A$ has a blue dot on their forehead.
+
+	If $A$ has a blue dot on their forehead, then either $B$ or $C$ would see the blue dot, and because everyone has their hands up, either one could deduce that they must have a red dot on their head. However, neither $B$ or $C$ said they knew their color so they too must both be seeing 2 red dots.
+
+	Case 2: $A$ has a red dot on their forehead.
+
+	If $A$ has a red dot on their forehead, then that means $B$ and $C$ do not know the color of their own dot based on Case 1's ending logic. Therefore, since neither $B$ or $C$ said they knew the color of their dot, then $A$ must know that they have a red dot on their forehead.
+\end{proof}
+
+
+
+\question{2}{Prove the following:}
+\begin{theorem}
+	Prove that a real number is irrational if and only if it is a different distance from every rational number.
+\end{theorem}
+
+\begin{proof}
+	First Direction: (Contrapositive) If a real number is equally distant from some rational numbers, then it is rational.
+
+	Let $n$ be a real number that is equally distanced between two rational numbers $x$ and $y$. Because $n$ is equally distant from $x$ and $y$, then it is analogous to it being the average of $x$ and $y$. $n = \frac{x+y}{2}$ which is a rational number because the operations of addition and division hold true for rational numbers.
+
+	Second Direction: (Contrapositive) A real number is rational if it is equally distant from some rational numbers.
+
+	Let $n$ be a real rational number, then it follows that $n+1$ and $n-1$ are both rational as well because subtraction and addition are all closed operations under rational numbers. Because $n+1$ and $n-1$ are equally distant from $n$ and they are both rational numbers, then the statement is proven to be true.
+\end{proof}
+
+
+
+
+
+
+
+	
+\end{document}
