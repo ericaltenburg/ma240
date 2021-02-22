@@ -1,0 +1,144 @@
+%=======================02-713 LaTeX template, following the 15-210 template==================
+%
+% You don't need to use LaTeX or this template, but you must turn your homework in as
+% a typeset PDF somehow.
+%
+% How to use:
+%    1. Update your information in section "A" below
+%    2. Write your answers in section "B" below. Precede answers for all 
+%       parts of a question with the command "\question{n}{desc}" where n is
+%       the question number and "desc" is a short, one-line description of 
+%       the problem. There is no need to restate the problem.
+%    3. If a question has multiple parts, precede the answer to part x with the
+%       command "\part{x}".
+%    4. If a problem asks you to design an algorithm, use the commands
+%       \algorithm, \correctness, \runtime to precede your discussion of the 
+%       description of the algorithm, its correctness, and its running time, respectively.
+%    5. You can include graphics by using the command \includegraphics{FILENAME}
+%
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\newtheorem{theorem}{Theorem}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\setlength{\headheight}{13.6pt}
+\newcommand\question[2]{\vspace{.25in}\hrule\textbf{#1}: #2\vspace{.5em}\hrule\vspace{.10in}}
+\renewcommand\part[1]{\vspace{.10in}\textbf{(#1)}\par}
+\newcommand\algorithm{\vspace{.10in}\textbf{Algorithm: }}
+\newcommand\correctness{\vspace{.10in}\textbf{Correctness: }}
+\newcommand\runtime{\vspace{.10in}\textbf{Running time: }}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\pagestyle{fancyplain}
+\lhead{\textbf{\NAME}}
+\chead{\textbf{{\COURSE} Lesson \HWNUM \text{ }Exercises}}
+\rhead{\today}
+\begin{document}\raggedright
+%Section A==============Change the values below to match your information==================
+\newcommand\NAME{Eric Altenburg}  % your name
+\newcommand\COURSE{MA-240}
+\newcommand\HWNUM{5}              % the homework number
+%Section B==============Put your answers to the questions below here=======================
+
+% no need to restate the problem --- the graders know which problem is which,
+% but replacing "The First Problem" with a short phrase will help you remember
+% which problem this is when you read over your homeworks to study.
+
+\textbf{Pledge:} \textit{I pledge my honor that I have abided by the Stevens Honor System.} -Eric Altenburg
+
+\question{1}{Take a look at the various sets of real numbers listed in the reading above. Do these sets havea  least element? If so, what is it?}
+
+\part{$X = \R$}
+	I don't think this has a lowest element simply because you can choose a number $x$ to be the lowest element, but then you can simply divide it by 2 and you would have a smaller element. Therefore, since it does not have a defined least element.
+
+\part{$X = \Z$}
+	Same as $\R$, this would not have a least element because you can have a number $x$ as the least element, but you can subtract 1 from it and have a more least element. This is not well ordered.
+
+\part{$X = \N$}
+	This does have a least element: 1. Because it has a least element it is well ordered.
+
+\part{$X = (0, 1)$}
+	This does not have a least element because it does not have a hard limit to 0 like the range $[0, 1]$ would. You can always take a least number $x$, then divide it by 10 and get something smaller. Therefore, it is not well ordered.
+
+\part{$X = (1, 2) \cup [-1, 0)$}
+	This has the least element -1 because that is the smallest number possible in the set which does include -1 in it. Since it has a least element, it is well ordered.
+
+\part{$X = \Q \cap [0, 1]$}
+	This has the least element 0 which is a rational number and is therefore a part of the set $\Q$. Since it the range includes 0 to be the smallest element, it is the least element. It is well ordered.
+
+\part{$X = \{n^{-1} | n \in \N\}$}
+	There is no least element in here because you can say $x$ is the largest number in $\N$ which would give the lowest element in the set $X$. However, $x+1$ is still in $\N$ and would give an even smaller number in the set $X$, therefore there is no least element and it is not well ordered.
+
+\question{2}{Use induction to prove that the sum of the first $n$ natural numbers is $\frac{n(n+1)}{2}$.}
+
+\begin{proof}
+	Base case: $n=1$
+
+	$1 = \frac{1(1+1)}{2} = 1$
+
+	Inductive Hypothesis:
+
+	Assume $1+2+3+\cdots+n = \frac{n(n+1)}{2}$ for $n=k$ where $k \ge 1 | k \in \N$. $1+2+3+\cdots+k = \frac{k(k+1)}{2}$.
+
+	Under this assumption, then if $n=k+1$ we get:
+	\begin{align*}
+		1+2+3+\cdots+k+(k+1) &= \frac{k(k+1)}{2} + (k+1)\\
+		&= \frac{k^2+k}{2} + \frac{2(k+1)}{2}\\
+		&= \frac{k^2 + 3k + 2}{2}\\
+		&= \frac{(k+1)(k+2)}{2}
+	\end{align*}
+	This proves the claim for any $n \in \N$.
+\end{proof}
+
+\question{3}{Use induction to prove that the $1+2+4 + \cdots + 2^n = 2^{n+1}-1$ for all $n$.}
+
+\begin{proof}
+	Base Case: $n=0$
+
+	$1 = 2^1 - 1 = 1$
+
+	Inductive Hypothesis:
+
+	Assume $1 + 2 + 4 + \cdots + 2^n = 2^{n+1}-1$ for $n=k$ where $k \ge 0 | k \in \N$. $1 + 2 + 4 + \cdots + 2^k = 2^{k+1}-1$.
+
+	Under this assumption, then if $n=k+1$ we get:
+
+	\begin{align*}
+		1 + 2 + 4 + \cdots + 2^k + 2^{k+1} &= 2^{k+1} - 1 + 2^{k+1}\\
+		&= (2^k \cdot 2^1) + (2^k \cdot 2^1) - 1\\
+		&= 2 ( 2^k \cdot 2^1) -1\\
+		&= (2^k \cdot 2^1 \cdot 2^1) - 1\\
+		&= (2^k \cdot 2^2) -1\\
+		&= 2^{k+2} - 1
+	\end{align*}
+
+	This proves the claim for any $n \in \N$.
+\end{proof}
+
+\question{4}{Did you know that, despite the fact that they appear to be distinct, all real numbers are actually equal to one another? Here's a proof! (\textit{insert proof here}). Does this proof look fishy to you? If so, can you explain what, exactly, has gone wrong?}
+
+The base case seems fine to me, however, by definition, a set is only composed of unique elements. While the base case is technically true since there are no duplicates in a set of size 1, if there is a set of size n+1 where they are all equal then technically the set would only be of size 1. In short, a set of $n$ real number that are all equal would be of size 1, and a set of $n+1$ real numbers would also be of size 1 which is not induction.
+
+\newpage
+\question{5}{Use the well-ordering principle to prove that induction works. (That is, try to prove the "Mathematical Induction" theorem stated above.)}
+
+\begin{theorem}
+	For each $n \in \N$, let $P(n)$ be a proposition, and suppose the following two conditions hold:
+	\begin{enumerate}
+	\item $P(1)$ is true.
+	\item The implication $P(n) \Rightarrow P(n+1)$ is true for all $n \in \N$.
+	\end{enumerate}
+
+	Then $P(n)$ is true for all $n \in \N$.
+\end{theorem}
+
+\begin{proof} 
+	(Contradiction) Suppose a non-empty set $S$ is composed of $\N$ and it has no least element. That would mean 1 does not exist in the set because then $S$ would have a least element. Now suppose, $1, 2, 3, 4, \cdots, n$ is not in $S$. Then, $n+1$ does not exist in the set either because if it did, then it would be the least element. With this, that means the set $S$ would end up being empty by induction which would be a contradiction. $S$ needs to have a least element in order for induction to work. 
+\end{proof}
+
+\end{document}
