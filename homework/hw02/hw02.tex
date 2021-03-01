@@ -41,7 +41,7 @@
 %Section A==============Change the values below to match your information==================
 \newcommand\NAME{Eric Altenburg}  % your name
 \newcommand\COURSE{MA-240}
-\newcommand\HWNUM{2}              % the homework number
+\newcommand\HWNUM{2 Corrections}              % the homework number
 %Section B==============Put your answers to the questions below here=======================
 
 % no need to restate the problem --- the graders know which problem is which,
@@ -53,98 +53,98 @@
 \question{1}{Write a proof for the following theorem:}
 
 \begin{theorem}
-	Let $n \in \Z$. Prove that $2n^2+n$ is odd if and only if $cos(\frac{n \pi}{2})$ is even.
+	Let $n \in \Z$. Then $2n^2+n$ is odd if and only if $\cos(\frac{n \pi}{2})$ is even.
 \end{theorem}
 
 \begin{proof}
-	Because of the nature of the \textit{if and only if} it must be proven bidirectionally. First, consider: $2n^2+n$ is odd $\Rightarrow$ $cos(\frac{n \pi}{2})$ is even.
+	Because of the nature of the \textit{if and only if} it must be proven bidirectionally. First, consider: $2n^2+n$ is odd $\Rightarrow$ $\cos(\frac{n \pi}{2})$ is even.
 
 	Case 1: $n$ is odd.
 
-	Let $n=2m+1$ where $m \in \Z$.
+	Then $n=2m+1$, where $m \in \Z$, and
 	\begin{align*}
 		2n^2+n &= 2(2m+1)^2 + (2m+1)\\
 		&= 2(4m^2+4m+1) + (2m+1)\\
 		&= 8m^2+8m+2+2m+1\\
 		&= 8m^2+10m+2+1\\
-		&= 2(4m^2+5m+1) + 1
+		&= 2(4m^2+5m+1) + 1.
 	\end{align*}
 
 	This an odd number by definition.
 
 	Case 2: $n$ is even.
 
-	Let $n=2m$ where $m \in \Z$.
+	Then $n=2m$, where $m \in \Z$, and
 	\begin{align*}
 		2n^2+n &= 2(2m)^2 + (2m)\\
 		&= 2(4m^2)+2m\\
 		&= 8m^2+2m\\
-		&= 2(4m^2+m)
+		&= 2(4m^2+m).
 	\end{align*}
 
-	This is an even number by definition. Since we want $2n^2+n$ to be odd for this implication, we can see that $n$ must be odd as well. Now let $n = 2m+1$ where $m \in \Z$. Therefore, 
+	This is an even number by definition. Since we want $2n^2+n$ to be odd for this implication, we can see that $n$ must be odd as well. Now let $n = 2m+1$ where $m \in \Z$. Then, 
 
 	\begin{align*}
-		cos(\frac{n\pi}{2}) &= cos(\frac{(2m+1)\pi}{2})\\
-		&= cos(\frac{2m\pi + \pi}{2})\\
-		&= cos(m\pi + \frac{\pi}{2})
+		\cos\left(\frac{n\pi}{2}\right) &= \cos\left(\frac{(2m+1)\pi}{2}\right)\\
+		&= \cos\left(\frac{2m\pi + \pi}{2}\right)\\
+		&= \cos\left(m\pi + \frac{\pi}{2}\right).
 	\end{align*}
 
-	This evaluates to 0 $\forall$ $m \in \Z$.
+	This evaluates to 0 for any $m \in \Z$.
 
-	The other direction of the implication that needs to be proven is: $cos(\frac{n\pi}{2})$ is even $\Rightarrow$ $2n^2+n$ is odd. Once again if $cos(\frac{n\pi}{2})$ is even, then it must evaluate to 0 which means $n$ must be odd. And because of case 1 previously shown, it is known that $2n^2+n$ will always be odd as well.
+	The other direction of the implication that needs to be proven is: $\cos(\frac{n\pi}{2})$ is even $\Rightarrow$ $2n^2+n$ is odd. Once again if $\cos(\frac{n\pi}{2})$ is even, then it must evaluate to 0 which means $n$ must be odd. And because of case 1 previously shown, it is known that $2n^2+n$ will always be odd as well.
 \end{proof}
 
 \pagebreak 
 \question{2}{Write a proof for the following theorem:}
 
 \begin{theorem}
-	Let $x,y \in \Z$. Prove that if $xy$ is odd, then $x^2 + y^2$ is even.
+	Let $x,y \in \Z$. If $xy$ is odd, then $x^2 + y^2$ is even.
 \end{theorem}
 
 \begin{proof}
-	Because $xy$ is odd, then $x$ and $y$ must be odd numbers. To show this, we can break it into cases.
+	Because $xy$ is odd, $x$ and $y$ must be odd numbers. To show this, we can create cases where $x$ and $y$ are different combination of even and odd numbers.
 
-	Case: $x, y$ are both odd.
+	Case 1: $x, y$ are both odd.
 
-	Let $x=2m+1$ and $y=2n+1$ where $m,n \in \Z$.
+	Then $x=2m+1$ and $y=2n+1$, where $m,n \in \Z$, and
 	\begin{align*}
 		xy &= (2m+1)(2n+1)\\
 		&= 4mn + 2m + 2n + 1\\
-		&= 2 (2mn + m + n) + 1
+		&= 2 (2mn + m + n) + 1.
 	\end{align*}
 	This is the definition of an odd number.
 
-	Case: $x$ is odd and $y$ is even.
+	Case 2: $x$ is odd and $y$ is even.
 	
-	Let $x=2m+1$ and $y=2n$ where $m,n \in \Z$.
+	Then $x=2m+1$ and $y=2n$, where $m,n \in \Z$, and
 	\begin{align*}
 		xy &= (2m+1)(2n)\\
-		&= 2(2mn+n)
+		&= 2(2mn+n).
 	\end{align*}
 	This is the definition of an even number.
 	
-	Case: $x$ is even and $y$ is odd.
+	Case 3: $x$ is even and $y$ is odd.
 	
-	Mutatis mutandis for the previous case.
+	The proof is identical to the proof of Case 3, mutatis mutandis.
 	
-	Case: $x,y$ are both even.
+	Case 4: $x,y$ are both even.
 	
-	Let $x=2m$ and $y=2n$ where $m,n \in \Z$.
+	Then $x=2m$ and $y=2n$, where $m,n \in \Z$, and
 	\begin{align*}
 		xy &= (2m)(2n)\\
 		&= 4mn\\
-		&= 2(2mn)
+		&= 2(2mn).
 	\end{align*}
 	This is the definition of an even number.
 
-	Since it is shown that both $x$ and $y$ must both be odd for $xy$ to be odd, we can define $x=2m+1$ and $2n+1$ where $m, n \in \Z$.
+	Since it is shown that both $x$ and $y$ must both be odd for $xy$ to be odd, we can define $x=2m+1$ and $2n+1$ where $m, n \in \Z$, and
 
 	\begin{align*}
 		x^2+y^2 &= (2m+1)^2 + (2n+1)^2\\
 		&= (4m^2 + 4m + 1) + (4n^2 + 4n + 1)\\
 		&= 4m^2+4n^2+4m+4n+2\\
-		&= 2(2m^2+2n^2+2m+2n+1)
+		&= 2(2m^2+2n^2+2m+2n+1).
 	\end{align*}
 
 	This is the definition of an even number.
@@ -155,19 +155,21 @@
 \question{3}{Write a proof for the following theorem:}
 
 \begin{theorem}
-	Prove that there is a student $S$ in MA 240 for whom the following is true: If $S$ eats a chocolate on Valentine's Day, then \textit{everyone} in MA 240 will eat a chocolate on Valentine's Day.
+	There is a student $S$ in MA 240 for whom the following is true: If $S$ eats a chocolate on Valentine's Day, then \textit{everyone} in MA 240 will eat a chocolate on Valentine's Day.
 \end{theorem}
 
 \begin{proof}
-	(Contrapositive) Let $S$ be the student who eats a chocolate on Valentine's Day and $E$ be everyone eating a chocolate on Valentine's Day. Instead of proving $S\Rightarrow E$, this can be proven by rewriting it as $\lnot E \Rightarrow \lnot S$.
+	
 
-	Case: No one in the class will eat a chocolate on Valentine's Day.
+	Consider two cases for the class:
 
-	Since no one in the class will be eating any chocolate on Valentine's Day, then there exists the student $S$ in the class who will not be eating chocolate on Valentine's Day either. This means $\lnot E$ and $\lnot S$ are both true making the implication $\lnot E \Rightarrow \lnot S$ true.
+	Case 1: There is at least one person in MA 240 not eating chocolate on Valentine's Day.
 
-	Case: Everyone in the class will eat a chocolate on Valentine's Day.
+	Then this leads to an implication that is vacuously true because from the perspective of the one or more people not eating chocolate, that means the antecedent, "if $S$ eats a chocolate on Valentine's Day," of the implication is false. Since this is false, then the consequent, "\textit{everyone} in MA 240 will eat a chocolate on Valentine's Day," will be true regardless; vacuously true.
 
-	Since everyone in the class will eat a chocolate on Valentine's Day, then there exists the student $S$ in the class who will be eating a chocolate on Valentine's Day. This means $\lnot E$ and $\lnot S$ are both false making the implication $\lnot E \Rightarrow \lnot S$ true.
+	Case 2: Everyone in MA 240 is eating chocolate on Valentine's Day.
+
+	Then this leads to a trivial proof because the consequent, "\textit{everyone} in MA 240 will eat a chocolate on Valentine's Day," is always true, therefore, it does not matter whether the antecedent is true or not making this implication always true.
 \end{proof}
 
 

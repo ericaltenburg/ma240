@@ -1,0 +1,115 @@
+%=======================02-713 LaTeX template, following the 15-210 template==================
+%
+% You don't need to use LaTeX or this template, but you must turn your homework in as
+% a typeset PDF somehow.
+%
+% How to use:
+%    1. Update your information in section "A" below
+%    2. Write your answers in section "B" below. Precede answers for all 
+%       parts of a question with the command "\question{n}{desc}" where n is
+%       the question number and "desc" is a short, one-line description of 
+%       the problem. There is no need to restate the problem.
+%    3. If a question has multiple parts, precede the answer to part x with the
+%       command "\part{x}".
+%    4. If a problem asks you to design an algorithm, use the commands
+%       \algorithm, \correctness, \runtime to precede your discussion of the 
+%       description of the algorithm, its correctness, and its running time, respectively.
+%    5. You can include graphics by using the command \includegraphics{FILENAME}
+%
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\newtheorem{theorem}{Theorem}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\setlength{\headheight}{13.6pt}
+\newcommand\question[2]{\vspace{.25in}\hrule\textbf{#1}: #2\vspace{.5em}\hrule\vspace{.10in}}
+\renewcommand\part[1]{\vspace{.10in}(#1)\par}
+\newcommand\algorithm{\vspace{.10in}\textbf{Algorithm: }}
+\newcommand\correctness{\vspace{.10in}\textbf{Correctness: }}
+\newcommand\runtime{\vspace{.10in}\textbf{Running time: }}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\pagestyle{fancyplain}
+\lhead{\textbf{\NAME}}
+\chead{\textbf{{\COURSE} Homework \HWNUM}}
+\rhead{\today}
+\begin{document}\raggedright
+%Section A==============Change the values below to match your information==================
+\newcommand\NAME{Eric Altenburg}  % your name
+\newcommand\COURSE{MA-240}
+\newcommand\HWNUM{4}              % the homework number
+%Section B==============Put your answers to the questions below here=======================
+
+% no need to restate the problem --- the graders know which problem is which,
+% but replacing "The First Problem" with a short phrase will help you remember
+% which problem this is when you read over your homeworks to study.
+
+\textbf{Pledge:} \textit{I pledge my honor that I have abided by the Stevens Honor System.} -Eric Altenburg
+
+\question{1}{Recall that the sequence of Fibonacci numbers is defined as follows: $F_1 = F_2 = 1$, and $F_n = F_{n-1}+F_{n-2}$ when $n > 2$.}
+
+\part{Prove that $F_1^2+F_2^2+ \ldots + F_n^2 = F_nF_{n+1}$ for all $n \in \N$.}
+	\begin{proof}
+		(Induction)\\
+		Base Case: $n = 1$, then
+		\begin{align*}
+			F_1^2 &= F_1 \cdot F_{2}\\
+			1 &= 1 \cdot 1\\
+			1 &= 1.
+		\end{align*}
+		Inductive Hypothesis: Assume $F_1^2+F_2^2+ \ldots + F_n^2 = F_nF_{n+1}$ holds true for some $n$. We wish to prove the identity holds for $n+1$ as well, we find that
+		\begin{align*}
+			F_1^2+F_2^2+ \ldots + F_n^2 + F_{n+1}^2 &= F_nF_{n+1} + F_{n+1}^2\\
+			&= F_{n+1} \left(F_n + F_{n+1}\right)\\
+			&= F_{n+1} F_{n+2}.
+		\end{align*}
+		This establishes the claim and completes the proof.
+	\end{proof}
+
+\part{Let $S_n$, where $n\in \N$, be the set of all $n$-digit binary strings that have no consecutive 1s. For example, $S_3 = \left\{000, 001, 010, 100, 101\right\}.$ Prove that $S_n$ contains exactly $F_{n+2}$ elements.}
+
+	\begin{proof}
+		(Induction)\\
+		Base Case:\\
+		$n=1$, then $S_1 = \left\{0, 1\right\}$. $F_3 = 2$ and $\left|S_1\right|= 2$.\\
+		$n=2$, then $S_2 = \left\{00, 01, 10\right\}$. $F_4 = 3$ and $\left|S_2\right|= 3$.\\
+		Inductive Hypothesis: Assume $S_n$ contains exactly $F_{n+2}$ elements where $S_n$ is some set of all $n$-digit binary strings that have no consecutive 1s and $n \in \N$. We wish to prove the identity holds for $S_{n+1}$ as well, we observe that
+		\begin{align*}
+			S_{n+1} &= S_n + S_{n-1}\\
+			&= F_{n+2} + F_{(n-1)+2}\\
+			&= F_{n+2} + F_{n+1}\\
+			&= F_{n+3}\\
+			&= F_{(n+1)+2}.
+		\end{align*}
+		This establishes the claim and completes the proof.
+	\end{proof}
+
+	\newpage
+
+\question{2}{Suppose you draw several straight lines on a piece of paper, thereby dividing the paper into different regions (each line should extend to the edges of the page). Prove that, no matter how your lines are drawn, it is possible to color each region red or blue in such a way that no two adjacent regions have the same color.}
+
+\begin{proof}
+	(Induction) Suppose $n$ are the amount of straight lines going from edge-to-edge drawn on a piece of paper.\\
+	Base Case: $n=1$\\
+	There are two regions on the piece of paper, one is colored red and the other is colored blue. The two regions are adjacent and do not have the same colors.\\
+	Inductive Hypothesis: Assume that for a piece of paper, no two adjacent regions have the same color for some $n$ amount of lines on it. \\
+	We wish to prove that the identity holds for $n+1$ lines as well, and after drawing the additional line on the paper we know that on either side of the new line, there are no two adjacent regions with the same color; the only regions where there are adjacent colors are the newly created ones on either side of the new line. To make the identity hold true, all the regions' colors on one side of the newly drawn line can be inverted; i.e. red becomes blue and blue becomes red. Doing this will still ensure that all the old regions will still follow the identity since they did before, because of this, these color changes will not break it. \\
+	Having inverted all the regions to one side of the new line, the regions on opposite sides of the new line are different colors and the identity holds true still for $n+1$ lines.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+	
+\end{document}
