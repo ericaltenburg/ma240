@@ -1,0 +1,72 @@
+%=======================02-713 LaTeX template, following the 15-210 template==================
+%
+% You don't need to use LaTeX or this template, but you must turn your homework in as
+% a typeset PDF somehow.
+%
+% How to use:
+%    1. Update your information in section "A" below
+%    2. Write your answers in section "B" below. Precede answers for all 
+%       parts of a question with the command "\question{n}{desc}" where n is
+%       the question number and "desc" is a short, one-line description of 
+%       the problem. There is no need to restate the problem.
+%    3. If a question has multiple parts, precede the answer to part x with the
+%       command "\part{x}".
+%    4. If a problem asks you to design an algorithm, use the commands
+%       \algorithm, \correctness, \runtime to precede your discussion of the 
+%       description of the algorithm, its correctness, and its running time, respectively.
+%    5. You can include graphics by using the command \includegraphics{FILENAME}
+%
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\newtheorem{theorem}{Theorem}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\setlength{\headheight}{13.6pt}
+\newcommand\question[2]{\vspace{.25in}\hrule\textbf{#1}: #2\vspace{.5em}\hrule\vspace{.10in}}
+\renewcommand\part[1]{\vspace{.10in}\textbf{(#1)}\par}
+\newcommand\algorithm{\vspace{.10in}\textbf{Algorithm: }}
+\newcommand\correctness{\vspace{.10in}\textbf{Correctness: }}
+\newcommand\runtime{\vspace{.10in}\textbf{Running time: }}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\pagestyle{fancyplain}
+\lhead{\textbf{\NAME}}
+\chead{\textbf{{\COURSE} Lesson \HWNUM \text{ }Exercises}}
+\rhead{\today}
+\begin{document}\raggedright
+%Section A==============Change the values below to match your information==================
+\newcommand\NAME{Eric Altenburg}  % your name
+\newcommand\COURSE{MA-240}
+\newcommand\HWNUM{7}              % the homework number
+%Section B==============Put your answers to the questions below here=======================
+
+% no need to restate the problem --- the graders know which problem is which,
+% but replacing "The First Problem" with a short phrase will help you remember
+% which problem this is when you read over your homeworks to study.
+
+\textbf{Pledge:} \textit{I pledge my honor that I have abided by the Stevens Honor System.} -Eric Altenburg
+
+\question{1}{\ldots Eventually, each lamp will settle into a final state. When all is said and done, which lamps will be glowing?}
+
+I think that when all is said and done, the lamps left glowing will be those that are on odd numbered lamps. Initially what I think when trying to prove this would be to use some form of induction where you can consider the $n$ lamps as a set of 0s and 1s where 0 is off and 1 is on. We can have the base cases of $n=1$ and $n=2$ to show that the odd number will be turned on and when the even number lamplighter starts, it will invert all the other lamps except for $n$ so you will have a set $S = \left\{1, 0, \ldots\right\}$. Then the inductive hypothesis will be typical in that you assume the property is true. Then for $n+1$ you need to break it down into cases of even and odd and that you will form the sets $S = \left\{1, 0, \ldots, n+1\right\}$.
+
+\question{2}{\ldots Can every square on the grid serve as the starting point of such a path? If not, which squares can? What can you say about the total number of such paths?}
+
+Only the 4 corners and 4 center edge squares are valid starting points and with each corner there are 2 possible opening moves and with each center there are 3 possible moves. This means there are \textit{at least} $(3\cdot4 + 2 \cdot 4) = 20$ moves. The upper limit I'm not entirely sure how to calculate (using a breadth first search would definitely find the upper limit but putting it in proof notation would be hard). Also, as for a proof of starting at the 4 corners and the 4 center edges, I'm stuck trying to prove this too. For me conceptually trying to put a maze into words is difficult because they can be represented in the form of a matrix, however, trying to logically show that it's possible to win starting at these points gets confusing because of all the the possible routes that can be taken.
+
+\question{3}{Does there exist a continuous function $f: (0, \infty) \rightarrow \R$ such that $f(x)$ is rational if and only if $f(2x)$ is irrational?}
+
+\begin{proof}
+	(Contradiction) Assume $f$ exists and is a continuous function such that $f: (0, \infty) \rightarrow \R$, and $x \in (0, \infty)$.\\
+	Case 1: $x$ is an irrational number\\
+	If $x$ is an irrational number, then we know that given an irrational input, the result of $f$ will be rational. Therefore, if we multiply it by 2, which is a non-zero rational number, then the input number will still be irrational and map to a rational result.\\
+	Case 2: $x$ is a rational number\\
+	If $x$ is rational, then we know that given a rational input, the result of $f$ will be rational. Therefore, if we multiply it by 2, it will still be a rational number and will continue to give us a rational result.\\
+	Neither case leads to $f$ behaving as the prompt states, and the consequent of the implication is always false, therefore, the implication itself is not true and no such function exists.
+\end{proof}
+	
+\end{document}
