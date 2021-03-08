@@ -1,0 +1,94 @@
+%=======================02-713 LaTeX template, following the 15-210 template==================
+%
+% You don't need to use LaTeX or this template, but you must turn your homework in as
+% a typeset PDF somehow.
+%
+% How to use:
+%    1. Update your information in section "A" below
+%    2. Write your answers in section "B" below. Precede answers for all 
+%       parts of a question with the command "\question{n}{desc}" where n is
+%       the question number and "desc" is a short, one-line description of 
+%       the problem. There is no need to restate the problem.
+%    3. If a question has multiple parts, precede the answer to part x with the
+%       command "\part{x}".
+%    4. If a problem asks you to design an algorithm, use the commands
+%       \algorithm, \correctness, \runtime to precede your discussion of the 
+%       description of the algorithm, its correctness, and its running time, respectively.
+%    5. You can include graphics by using the command \includegraphics{FILENAME}
+%
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\newtheorem{theorem}{Theorem}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\setlength{\headheight}{13.6pt}
+\newcommand\question[2]{\vspace{.25in}\hrule\textbf{#1}: #2\vspace{.5em}\hrule\vspace{.10in}}
+\renewcommand\part[1]{\vspace{.10in}(#1)\par}
+\newcommand\algorithm{\vspace{.10in}\textbf{Algorithm: }}
+\newcommand\correctness{\vspace{.10in}\textbf{Correctness: }}
+\newcommand\runtime{\vspace{.10in}\textbf{Running time: }}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newtheorem{lemma}[theorem]{Lemma}
+\pagestyle{fancyplain}
+\lhead{\textbf{\NAME}}
+\chead{\textbf{{\COURSE} Lesson \HWNUM \text{ }Exercises}}
+\rhead{\today}
+\begin{document}\raggedright
+%Section A==============Change the values below to match your information==================
+\newcommand\NAME{Eric Altenburg}  % your name
+\newcommand\COURSE{MA-240}
+\newcommand\HWNUM{8/9}              % the homework number
+%Section B==============Put your answers to the questions below here=======================
+
+% no need to restate the problem --- the graders know which problem is which,
+% but replacing "The First Problem" with a short phrase will help you remember
+% which problem this is when you read over your homeworks to study.
+
+\textbf{Pledge:} \textit{I pledge my honor that I have abided by the Stevens Honor System.} -Eric Altenburg
+
+\question{1}{Try your hand at the following lemma.}
+
+\begin{lemma}
+	Let $R$ be an equivalence relation on a nonempty set $A$, and let $a,b \in A$. Then $\left[a\right]=\left[b\right]$ if and only if $(a,b)\in R$.
+\end{lemma}
+
+\begin{proof}
+	($\Rightarrow$) Assume $[a]=[b]$. Since we know that $R$ is an equivalence relation, it is reflexive. Therefore, $[a] = [a]$ and from our original assumption we say that $[a]=[b]$, so it shows that $a,b \in R$.\\
+	{$\Leftarrow$} Assume that $(a,b) \in R$. Let $x \in [a]$, and since $(a,b) \in R$, due to transitivity $(x,b) \in R$ so $x \in [b]$. Let $y \in [b]$, and since $(a,b) \in R$, due to symmetry we have $(y,a) \in R$ so $y \in [a]$. Therefore, it is proven.
+\end{proof}
+
+
+
+\question{2}{Recall that a partition of a set $A$ is a collection of nonempty pairwise-disjoint subsets of $A$ whose union is all of $A$. Now try your hand at proving the following theorem.}
+
+\begin{theorem}
+	If $R$ is an equivalence relation on a nonempty set $A$, then the set $\Pi=\{[a]\}_{a\in A}$ of equivalence classes of elements of $A$ is partition of $A$.
+\end{theorem}	
+
+I'm not sure where to really begin when trying to prove this and cannot form it into a formal proof, but loosely the logic I would try to follow would be to show that because $\Pi$ is set of equivalence classes, we can use it to show that they form sets whose union will form $A$.
+
+
+\question{3}{Given integers $a,b \in \Z$ and an integer $n > 1$, we say that $A$ and $B$ are congruent modulo $n$ written $a\equiv b\,\,(\text{mod}\,n)$ if $n$ divides $a-b$.}
+
+\part{Prove that for any $n>1$, being congruent modulo $n$ is an equivalence relation.}
+
+\begin{proof}
+	To show that for any $n>1$, being congruent modulo $n$ is an equivalence relation we need to show that congruency is both reflexive, symmetric, and transitive.\\
+	(Reflexive) We can say $a-a=0x$ where $x$ is some integer. Then it is reasonable to say that $a \equiv a(\text{mod }n)$.\\
+	(Symmetric) If we assume that $a\equiv b\,\,(\text{mod}\,n)$, then it stands that $a-b=nx$ where $x$ is some integer. Then we can multiply both sides by -1 and obtain $b-a=n(-x)$ which is the same as saying $b\equiv a\,\,(\text{mod}\,n)$,\\
+	(Transitive) Assume we have $a\equiv b\,\,(\text{mod}\,n)$ and $b\equiv c\,\,(\text{mod}\,n)$. Then we have the two equations $a-b=nx$ for some integer $x$ and $b-c=ny$ for some integer $y$. When combining the equations together we get $(a-b)+(b-c) = nx + ny \Rightarrow a-c=n(x+y)$ and since $x,y \in \Z$ we can say that $a\equiv c\,\,(\text{mod}\,n)$.
+\end{proof}
+
+\part{Describe the equivalence classes of congruence modulo 3.}
+ 	Since we are going up to 3 for this modulo there are only three sets of integers that satisfy this congruence. The first is the set of all integers which are congruent to 1 mod 3. The second is the set of all integers which are congruent to 2 mod 3. Finally, the third is the set of all integers which are congruent to 3 mod 3.
+
+
+
+
+	
+\end{document}
