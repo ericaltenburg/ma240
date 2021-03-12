@@ -1,0 +1,69 @@
+%=======================02-713 LaTeX template, following the 15-210 template==================
+%
+% You don't need to use LaTeX or this template, but you must turn your homework in as
+% a typeset PDF somehow.
+%
+% How to use:
+%    1. Update your information in section "A" below
+%    2. Write your answers in section "B" below. Precede answers for all 
+%       parts of a question with the command "\question{n}{desc}" where n is
+%       the question number and "desc" is a short, one-line description of 
+%       the problem. There is no need to restate the problem.
+%    3. If a question has multiple parts, precede the answer to part x with the
+%       command "\part{x}".
+%    4. If a problem asks you to design an algorithm, use the commands
+%       \algorithm, \correctness, \runtime to precede your discussion of the 
+%       description of the algorithm, its correctness, and its running time, respectively.
+%    5. You can include graphics by using the command \includegraphics{FILENAME}
+%
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\newtheorem{theorem}{Theorem}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\setlength{\headheight}{13.6pt}
+\newcommand\question[2]{\vspace{.25in}\hrule\textbf{#1}: #2\vspace{.5em}\hrule\vspace{.10in}}
+\renewcommand\part[1]{\vspace{.10in}(#1)\par}
+\newcommand\algorithm{\vspace{.10in}\textbf{Algorithm: }}
+\newcommand\correctness{\vspace{.10in}\textbf{Correctness: }}
+\newcommand\runtime{\vspace{.10in}\textbf{Running time: }}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\pagestyle{fancyplain}
+\lhead{\textbf{\NAME}}
+\chead{\textbf{{\COURSE} Homework \HWNUM}}
+\rhead{\today}
+\begin{document}\raggedright
+%Section A==============Change the values below to match your information==================
+\newcommand\NAME{Eric Altenburg}  % your name
+\newcommand\COURSE{MA-240}
+\newcommand\HWNUM{1}              % the homework number
+%Section B==============Put your answers to the questions below here=======================
+
+% no need to restate the problem --- the graders know which problem is which,
+% but replacing "The First Problem" with a short phrase will help you remember
+% which problem this is when you read over your homeworks to study.
+
+\textbf{Pledge:} \textit{I pledge my honor that I have abided by the Stevens Honor System.} -Eric Altenburg
+
+\question{1}{Prove that each of the following relations is an equivalence relation. Then describe the corresponding equivalence classes, e.g. by giving a geometric description.}
+
+\part{The relation $R$ defined on $\R^2$ by $((a,b),(c,d)) \in R$ if $|a| + |b| = |c| + |d|.$}
+
+\part{The relation $S$ defined on the set of positive rational numbers $\Q_{>0}$ by $(a,b) \in S \text{ if } \frac{a}{b}= 2^n$ for some $n \in \Z$.}
+
+\question{2}{Let $R$ and $S$ be equivalence relations on a set $A$. Prove or disprove the following statements.}
+
+\part{The relation $R \cup S$ is an equivalence relation on $A$.}
+
+\part{The relation $R \cap S$ is an equivalence relation on $A$.}
+
+\question{3}{The set of integers \textit{modulo n}, where $n > 1$ is a natural number, is denoted $\Z/n\Z$ and is defined as the set of equivalence classes under the equivalence relation on $\Z$ of being congruent modulo $n$. Prove that is it possible to define addition and multiplication operations on $\Z/n\Z$ via the formulas $[a]+[b] = [ a + b]$ and $[a] \cdot [b] = [ a \cdot b]$, respectively.}
+
+	
+\end{document}
