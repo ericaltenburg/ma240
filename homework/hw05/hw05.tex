@@ -33,6 +33,7 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
+\newtheorem{conjecture}[theorem]{Conjecture }
 \pagestyle{fancyplain}
 \lhead{\textbf{\NAME}}
 \chead{\textbf{{\COURSE} Homework \HWNUM}}
@@ -41,7 +42,7 @@
 %Section A==============Change the values below to match your information==================
 \newcommand\NAME{Eric Altenburg}  % your name
 \newcommand\COURSE{MA-240}
-\newcommand\HWNUM{1}              % the homework number
+\newcommand\HWNUM{5}              % the homework number
 %Section B==============Put your answers to the questions below here=======================
 
 % no need to restate the problem --- the graders know which problem is which,
@@ -52,9 +53,49 @@
 
 \question{1}{Prove that, given any two real numbers $x$ and $y$ such that $x < y$, there exists an irrational number $z$ such that $x < z < y$.}
 
+\begin{proof}
+	Let $z$ be a real number equally distant from $x$ and $y$, $z = \frac{x+y}{2}$. To show that $x<z$, substitute $z$ for $\frac{x+y}{2}$, and
+	\begin{align*}
+		x &< z\\
+		x &< \frac{x+y}{2}\\
+		2x &< x+y\\
+		x &< y.
+	\end{align*} 
+	Given that $x<y$, this proves the inequality to be true for $x<z$. To show that $z<y$, substitute $z$ for $\frac{x+y}{2}$ again, and 
+	\begin{align*}
+		z &< y\\
+		\frac{x+y}{2} &< y\\
+		x + y &< 2y\\
+		x &< y.
+	\end{align*}
+	Once again, given $x<y$ this proves the inequality to be true for $z<y$.
+\end{proof}
+
 \question{2}{Let $S\subset\{1,2,\ldots,1000\}$ be a set of 100 natural numbers. Prove that there exists distinct nonempty subsets $X,Y \subset S$ such that the sum of the elements of $X$ equals the sum of the elements of $Y$.}
 
+\begin{proof}
+	The possible number of subsets of 100 natural numbers are $2^{100}$, and the largest possible sum of a subset of numbers of $S$ is $901 + 902 + \ldots + 999 + 1000 = 95050$. This means there are 95050 possible sums of numbers, and due to the Pigeonhole Principle, since there are more subsets ($2^{100}$) than there are possible sums (95050), there exists at least one sum which can be made from two subsets. 
+
+	Let $A$ and $B$ be the two subsets that form the same sum, and let $C = A \cap B$ which are all the elements that are found in both $A$ and $B$. If we remove the set of $C$ from $A$ and $B$, then $A' = A - C$ and $B' = B-C$. Since we removed the same elements from both sets, the sum of $A'$ and $B'$ will remain the same while being distinct and non-empty. 
+\end{proof}
+
 \question{3}{Make a conjecture about which numbers $n \in \N$ can be expressed as a sum of two or more consecutive natural numbers. (Note that the numbers int he sum don't have to start at 1. For example, 12 is such a number since $12 = 3 + 4 + 5$.) Then prove your conjecture.}
+
+\begin{conjecture}
+	Every number $n \in \N$ where $n \ne 2^k$ and $k \in \N$ can be expressed as the sum of two or more consecutive natural numbers.
+\end{conjecture}
+
+\begin{proof}
+	(Contradiciton) Assume a number $n$ that is a power of 2 can be written as a sum of consecutive natural numbers. The amount of numbers that can be added up to make $n$ can be an odd and even amount.
+
+	Case 1: The summation has an odd amount of consecutive numbers.\\
+	A sum of consecutive numbers having an odd amount of numbers would have one exact middle number being added together (i.e. $m + (m+1) + \ldots + (m+n)$ will have an element that is equally distant from $m$ and $(m+n)$, this is known as the average of the two numbers). Then the sum can be expressed as $\text{sum} = \text{average} \cdot \text{amount of consecutive number added together}$, the latter of which is odd. This would mean the sum has an odd number as a factor, however, a power of 2 will always be even which is a contradiction.
+
+	Case 2: The summation has an even amount of consecutive numbers.\\
+	Because the sum will have an even amount of consecutive numbers, there will not be a number that is the average like with Case 1, instead the middle two numbers must be summed and then divided by 2. This means the sum can be expressed as $\text{sum} = \text{middle two numbers summed} \cdot \frac{1}{2} \cdot \text{amount of consecutive numbers}$. We know the amount of consecutive numbers divided by 2 will still be an even number, however, two consecutive numbers added together will always form an odd number. This means the sum has an odd number as a factor, and since a power of 2 will always be even, this is a contradiction.
+\end{proof}
+% We know the sum of numbers from 1 to $n$ is $\frac{n(n+1)}{2}$, so the summation of numbers from $k$ to $n$ is 
+
 
 
 
