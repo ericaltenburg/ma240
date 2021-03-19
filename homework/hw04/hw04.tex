@@ -41,7 +41,7 @@
 %Section A==============Change the values below to match your information==================
 \newcommand\NAME{Eric Altenburg}  % your name
 \newcommand\COURSE{MA-240}
-\newcommand\HWNUM{4}              % the homework number
+\newcommand\HWNUM{4 Corrections}              % the homework number
 %Section B==============Put your answers to the questions below here=======================
 
 % no need to restate the problem --- the graders know which problem is which,
@@ -61,7 +61,7 @@
 			1 &= 1 \cdot 1\\
 			1 &= 1.
 		\end{align*}
-		Inductive Hypothesis: Assume $F_1^2+F_2^2+ \ldots + F_n^2 = F_nF_{n+1}$ holds true for some $n$. We wish to prove the identity holds for $n+1$ as well, we find that
+		Inductive Hypothesis: Assume $F_1^2+F_2^2+ \ldots + F_n^2 = F_nF_{n+1}$ holds true for some $n$. We wish to prove the identity holds for $n+1$ as well, and we find that
 		\begin{align*}
 			F_1^2+F_2^2+ \ldots + F_n^2 + F_{n+1}^2 &= F_nF_{n+1} + F_{n+1}^2\\
 			&= F_{n+1} \left(F_n + F_{n+1}\right)\\
@@ -75,11 +75,11 @@
 	\begin{proof}
 		(Induction)\\
 		Base Case:\\
-		$n=1$, then $S_1 = \left\{0, 1\right\}$. $F_3 = 2$ and $\left|S_1\right|= 2$.\\
-		$n=2$, then $S_2 = \left\{00, 01, 10\right\}$. $F_4 = 3$ and $\left|S_2\right|= 3$.\\
-		Inductive Hypothesis: Assume $S_n$ contains exactly $F_{n+2}$ elements where $S_n$ is some set of all $n$-digit binary strings that have no consecutive 1s and $n \in \N$. We wish to prove the identity holds for $S_{n+1}$ as well, we observe that
+		If $n=1$, then $S_1 = \left\{0, 1\right\}$. $F_3 = 2$ and $\left|S_1\right|= 2$.\\
+		If $n=2$, then $S_2 = \left\{00, 01, 10\right\}$. $F_4 = 3$ and $\left|S_2\right|= 3$.\\
+		Inductive Hypothesis: Assume $S_n$ contains exactly $F_{n+2}$ elements, where $S_n$ is the set of all $n$-digit binary strings that have no consecutive 1s and $n \in \N$. We wish to prove the identity holds for $S_{n+1}$ as well, and we observe that
 		\begin{align*}
-			S_{n+1} &= S_n + S_{n-1}\\
+			\mid S_{n+1} \mid &= \mid S_n \mid + \mid S_{n-1} \mid\\
 			&= F_{n+2} + F_{(n-1)+2}\\
 			&= F_{n+2} + F_{n+1}\\
 			&= F_{n+3}\\
@@ -93,12 +93,17 @@
 \question{2}{Suppose you draw several straight lines on a piece of paper, thereby dividing the paper into different regions (each line should extend to the edges of the page). Prove that, no matter how your lines are drawn, it is possible to color each region red or blue in such a way that no two adjacent regions have the same color.}
 
 \begin{proof}
-	(Induction) Suppose $n$ are the amount of straight lines going from edge-to-edge drawn on a piece of paper.\\
+	(Induction) Suppose $n$ is the number of straight lines going from edge-to-edge drawn on a piece of paper.\\
 	Base Case: $n=1$\\
-	There are two regions on the piece of paper, one is colored red and the other is colored blue. The two regions are adjacent and do not have the same colors.\\
-	Inductive Hypothesis: Assume that for a piece of paper, no two adjacent regions have the same color for some $n$ amount of lines on it. \\
-	We wish to prove that the identity holds for $n+1$ lines as well, and after drawing the additional line on the paper we know that on either side of the new line, there are no two adjacent regions with the same color; the only regions where there are adjacent colors are the newly created ones on either side of the new line. To make the identity hold true, all the regions' colors on one side of the newly drawn line can be inverted; i.e. red becomes blue and blue becomes red. Doing this will still ensure that all the old regions will still follow the identity since they did before, because of this, these color changes will not break it. \\
-	Having inverted all the regions to one side of the new line, the regions on opposite sides of the new line are different colors and the identity holds true still for $n+1$ lines.
+	There are two regions on the piece of paper, one can be colored red and the other is colored blue. The two regions are adjacent and do not have the same colors.\\
+	Inductive Hypothesis: Assume that for a piece of paper with $n$ lines on it, there are no two adjacent regions that have the same color.\\
+	We wish to prove that the property holds for $n+1$ lines as well. After drawing the additional line on the paper, suppose one side of the new line containing all that side's regions is called $A$, and the other side of the new line containing all that side's regions is called $B$. We know that all the adjacent regions in side $A$ and all the adjacent regions in side $B$ satisfy the property, however, the adjacent regions where sides $A$ and $B$ meet will have the same color. To make the identity hold true, all the regions' colors on either side $A$ or $B$ can be inverted; for example, all of $A$'s red regions become blue and blue regions become red. Doing this will still ensure that all the old regions will still follow the identity since they did prior to the inversion, because of this, these color changes will not break it. \\
+
+
+	% and after drawing the additional line on the paper we know that on both sides of the new line, there are no two regions with the same color. However, the property is not currently satisfied as the newly created regions from the new line are the same color and adjacent to each other. 
+
+	
+	Having inverted all the regions to one side of the new line, the regions adjacent to each other where sides $A$ and $B$ meet are different colors and the identity holds true still for $n+1$ lines.
 \end{proof}
 
 

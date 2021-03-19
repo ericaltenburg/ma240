@@ -1,0 +1,84 @@
+%=======================02-713 LaTeX template, following the 15-210 template==================
+%
+% You don't need to use LaTeX or this template, but you must turn your homework in as
+% a typeset PDF somehow.
+%
+% How to use:
+%    1. Update your information in section "A" below
+%    2. Write your answers in section "B" below. Precede answers for all 
+%       parts of a question with the command "\question{n}{desc}" where n is
+%       the question number and "desc" is a short, one-line description of 
+%       the problem. There is no need to restate the problem.
+%    3. If a question has multiple parts, precede the answer to part x with the
+%       command "\part{x}".
+%    4. If a problem asks you to design an algorithm, use the commands
+%       \algorithm, \correctness, \runtime to precede your discussion of the 
+%       description of the algorithm, its correctness, and its running time, respectively.
+%    5. You can include graphics by using the command \includegraphics{FILENAME}
+%
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\newtheorem{theorem}{Theorem}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\setlength{\headheight}{13.6pt}
+\newcommand\question[2]{\vspace{.25in}\hrule\textbf{#1}: #2\vspace{.5em}\hrule\vspace{.10in}}
+\renewcommand\part[1]{\vspace{.10in}(#1)\par}
+\newcommand\algorithm{\vspace{.10in}\textbf{Algorithm: }}
+\newcommand\correctness{\vspace{.10in}\textbf{Correctness: }}
+\newcommand\runtime{\vspace{.10in}\textbf{Running time: }}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\pagestyle{fancyplain}
+\lhead{\textbf{\NAME}}
+\chead{\textbf{{\COURSE} Lesson \HWNUM \text{ }Exercises}}
+\rhead{\today}
+\begin{document}\raggedright
+%Section A==============Change the values below to match your information==================
+\newcommand\NAME{Eric Altenburg}  % your name
+\newcommand\COURSE{MA-240}
+\newcommand\HWNUM{11}              % the homework number
+%Section B==============Put your answers to the questions below here=======================
+
+% no need to restate the problem --- the graders know which problem is which,
+% but replacing "The First Problem" with a short phrase will help you remember
+% which problem this is when you read over your homeworks to study.
+
+\textbf{Pledge:} \textit{I pledge my honor that I have abided by the Stevens Honor System.} -Eric Altenburg
+
+\question{1}{Suppose that $\left\{A_n\right\}_{n\in\N}$ is a countable collection of countable sets.}
+
+\part{Is the union $\bigcup_{n\in\mathbb{N}}A_n=A_1\cup A_2\cup\ldots\cup A_n\cup\ldots$ countable? Try to prove or disprove your answer.}
+
+\begin{proof}
+	Since we know that $\left\{A_n\right\}_{n\in\N}$ is the countable collection of countable sets, that means each set $A_n$ where $n \in \N$ in the collection is countable. Because the union of two countable sets is still countable, then this means $A_1 \cup A_2$ is countable and forms its own countable set, suppose it is called $A_12$. Then doing $A_12 \cup A_3$ would also lead to a countable set. This patten continues for all $n \in \N$.
+\end{proof}
+
+\part{Is the product $\prod_{n\in\mathbb{N}}A_n=A_1\times A_2\times\ldots\times A_n\times\ldots$ countable? Again, try to prove or disprove your answer.}
+
+\begin{proof}
+	Again, we know that $\left\{A_n\right\}_{n\in\N}$ is the countable collection of countable sets, that means each set $A_n$ where $n \in \N$ in the collection is countable. Because the product of two countable sets is still countable, then this means $A_1 \times A_2$ creates its own countable set called $A_12$. Then doing $A_12 \times A_3$ would also lead to a countable set. This pattern continues for all $n \in \N$.
+\end{proof}
+
+\question{2}{Assuming the Schröder-Bernstein theorem (you may or may not find it helpful), see if you can explain whether the following sets have the same cardinality.}
+
+\part{$A = ( 0 , 1 )$ and $B=[0,1]$}
+
+This doesn't have the same cardinality because the the set of numbers in A do not include 2 numbers, 0 and 1, which are included in B. This means the cardinality of A will always be 2 less than B.
+
+\part{$A = ( 0 , 1 )$ and $ B=\mathbb{R}$}
+Assuming the theorem we can show that (0,1) is a subset of $\R$ by simply taking a function $f: (0,1) \rightarrow \R$ where any number from (0,1) will give itself. This shows that $\mid (0,1) \mid \le \mid \R \mid$. Now to show that $\R \ge (0,1)$ we create a second function $g: \R \rightarrow (0,1)$ where for any number $x \in \R$ if it is not negative you do $\frac{1}{2} + 2^{-x-1}$ and if it is negative then you get $2^{n-1}$. This maps the function from $\R$ to (0,1) which shows that $\mid \R \mid \le \mid (0,1) \mid$, and this means that they have the same cardinality.
+
+
+\part{$A=\{(x,y)\in\mathbb{R}^2\mid x^2+y^2<1\}$ and $B=[0,1]\times[0,1]$}
+Trying to follow the same idea as before, I am stuck trying to create the first function showing that $\mid A \mid \le \mid B \mid$. Mainly this is because of the set $A$ where I can't visualize the set because with $x$ being 0 then $y$ can be up to but not including 1, and if $y$ were to be 0, then $x$ can be up to but not including 1 as well. So with this I would think the range would be (1, 1) however, trying to restrict $x$ such that using a large enough $y$ will satisfy $x^2+y^2 < 1$ is something I cannot seem to figure out.
+
+\question{3}{For any set $A$, we have $\mid A \mid < \mid 2^A \mid$.}
+
+An idea we can try to follow is the though of having a function that maps the elements from $A$ to $2^A$, and then try to show that not every element in $A$ can map to an element in $2^A$ showing that $2^A$ has a larger cardinality. 
+	
+\end{document}
