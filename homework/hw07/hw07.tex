@@ -1,0 +1,74 @@
+%=======================02-713 LaTeX template, following the 15-210 template==================
+%
+% You don't need to use LaTeX or this template, but you must turn your homework in as
+% a typeset PDF somehow.
+%
+% How to use:
+%    1. Update your information in section "A" below
+%    2. Write your answers in section "B" below. Precede answers for all 
+%       parts of a question with the command "\question{n}{desc}" where n is
+%       the question number and "desc" is a short, one-line description of 
+%       the problem. There is no need to restate the problem.
+%    3. If a question has multiple parts, precede the answer to part x with the
+%       command "\part{x}".
+%    4. If a problem asks you to design an algorithm, use the commands
+%       \algorithm, \correctness, \runtime to precede your discussion of the 
+%       description of the algorithm, its correctness, and its running time, respectively.
+%    5. You can include graphics by using the command \includegraphics{FILENAME}
+%
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\newtheorem{theorem}{Theorem}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\setlength{\headheight}{13.6pt}
+\newcommand\question[2]{\vspace{.25in}\hrule\textbf{#1}: #2\vspace{.5em}\hrule\vspace{.10in}}
+\renewcommand\part[1]{\vspace{.10in}(#1)\par}
+\newcommand\algorithm{\vspace{.10in}\textbf{Algorithm: }}
+\newcommand\correctness{\vspace{.10in}\textbf{Correctness: }}
+\newcommand\runtime{\vspace{.10in}\textbf{Running time: }}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\pagestyle{fancyplain}
+\lhead{\textbf{\NAME}}
+\chead{\textbf{{\COURSE} Homework \HWNUM}}
+\rhead{\today}
+\begin{document}\raggedright
+%Section A==============Change the values below to match your information==================
+\newcommand\NAME{Eric Altenburg}  % your name
+\newcommand\COURSE{MA-240}
+\newcommand\HWNUM{7}              % the homework number
+%Section B==============Put your answers to the questions below here=======================
+
+% no need to restate the problem --- the graders know which problem is which,
+% but replacing "The First Problem" with a short phrase will help you remember
+% which problem this is when you read over your homeworks to study.
+
+\textbf{Pledge:} \textit{I pledge my honor that I have abided by the Stevens Honor System.} -Eric Altenburg
+
+\question{1}{Prove that if two sets $A$ and $B$ have the same cardinality, then for any set $C$, the sets $A \times C$ and $B \times C$ have the same cardinality as well.}
+
+\begin{proof}
+	Let $n = \mid A \mid$, and since $\mid A \mid = \mid B \mid$, then $n = \mid A \mid = \mid B \mid$. Additionally, let $m = \mid C \mid$. To determine the cardinality of the Cartesian product, you multiply the cardinality of the two sets (i.e. $\mid X \times Y \mid = \mid X \mid \cdot \mid Y \mid$). Therefore, 
+	\begin{align*}
+		\mid A \times C \mid &= \mid B \times C \mid\\
+		\mid A \mid \cdot \mid C \mid &= \mid B \mid \cdot \mid C \mid\\
+		n \cdot m &= n \cdot m.
+	\end{align*}
+	This shows that the cardinality of the two Cartesian products are always equal if $\mid A \mid = \mid B \mid$ which completes the proof.
+\end{proof}
+
+\question{2}{Is it true that a set $A$ is countable if and only if there exists a surjection $f : \N \rightarrow A$? (Recall that a surjection is an onto function.) If so, prove it. If not, state and prove a closely related theorem.}
+
+\question{3}{Prove that the infinite strip $S = \{(x,y) \in \R^2 \mid x \in \R \text{ and } 0 \le y \le 1 \}$ and the Cartesian plane $\R^2$ have the same cardinality. \textit{Hint:} You may assume the Schröder-Bernstein theorem.}
+
+\question{4}{Prove the theorem whose proof we didn't complete in class: For any set $A$, we have $\mid A \mid < \mid 2^A \mid$.}
+
+
+
+	
+\end{document}
