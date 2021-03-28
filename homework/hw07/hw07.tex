@@ -55,20 +55,69 @@
 \begin{proof}
 	Let $n = \mid A \mid$, and since $\mid A \mid = \mid B \mid$, then $n = \mid A \mid = \mid B \mid$. Additionally, let $m = \mid C \mid$. To determine the cardinality of the Cartesian product, you multiply the cardinality of the two sets (i.e. $\mid X \times Y \mid = \mid X \mid \cdot \mid Y \mid$). Therefore, 
 	\begin{align*}
-		\mid A \times C \mid &= \mid B \times C \mid\\
-		\mid A \mid \cdot \mid C \mid &= \mid B \mid \cdot \mid C \mid\\
+		\mid A \times C \mid &= \,\mid B \times C \mid\\
+		\mid A \mid \cdot \mid C \mid &= \,\mid B \mid \cdot \mid C \mid\\
 		n \cdot m &= n \cdot m.
 	\end{align*}
 	This shows that the cardinality of the two Cartesian products are always equal if $\mid A \mid = \mid B \mid$ which completes the proof.
 \end{proof}
 
+
+% https://leanprover.github.io/logic_and_proof/the_infinite.html
 \question{2}{Is it true that a set $A$ is countable if and only if there exists a surjection $f : \N \rightarrow A$? (Recall that a surjection is an onto function.) If so, prove it. If not, state and prove a closely related theorem.}
+
+The way the theorem is currently written cannot be proven because it is possible for $A$ to be an empty set. Therefore, the theorem should be rewritten to account for this.
+
+\begin{theorem}
+	The set $A$ is countable if and only if $A$ is empty or there exists a surjection $f : \N \rightarrow A$.
+\end{theorem}
+
+\begin{proof}
+	($\Longrightarrow$)\\
+	Suppose $A$ is countable. Then this means $A$ is either finite or infinitely countable.\\
+	Case 1: $A$ is infinitely countable.\\
+	If $A$ is infinitely countable, then there exists a bijective function from $\N$ to $A$. And since it is bijective, then the function from $\N$ to $A$ is also surjective.\\
+	Case 2: $A$ is finite and is empty.\\
+	The empty set is countable.\\
+	Case 3: $A$ is finite and not empty.\\
+	Since $A$ is finite and countable, then there is a bijective function for some $n$ where $f:[n] \rightarrow A$ and $n \ge 1$. We can create a surjection between $\N$ and $A$ by defining $g: \N \rightarrow A$ as,
+	\begin{equation*}
+		g(x) \rightarrow
+		\begin{cases}
+			f(x) & \text{if $x < n$}\\
+			f(0) & \text{else}
+		\end{cases}\,.
+	\end{equation*}
+	The function $g$ simply returns each element in the set $A$, and then it will repeat $f(0)$. This is surjective.\\
+	($\Longleftarrow$)\\
+	Case 1: $A$ is finite.\\
+	If $A$ is finite, then it is countable.\\
+	Case 2: $A$ is infinite.\\
+	If $A$ is infinite, then it is not empty, and there is a surjection $f: \N \rightarrow A$. To make $f$ bijective, we need to account for the issue of an element in $A$ being enumerated more than once because if it does, then it is not injective. To fix this, we can create another function $g$ that will enumerate $f$'s output and does not include the output that has been repeated. Define $g$ as $g(0) = f(0)$ and for every $i$, $g(i+1) = f(j)$ such that $j$ is the least number in $\N$ and $f(j) \not\in \{g(0), g(1), \ldots, g(j)\}$. The function $g$ is a bijection because for every $i$, $g(i+1) \not\in \{g(0), g(1), \ldots, g(i)\}$ which makes it injective, and since $f$ is surjective, $g$ is as well. This means $A$ countable.  
+\end{proof}
+
 
 \question{3}{Prove that the infinite strip $S = \{(x,y) \in \R^2 \mid x \in \R \text{ and } 0 \le y \le 1 \}$ and the Cartesian plane $\R^2$ have the same cardinality. \textit{Hint:} You may assume the Schröder-Bernstein theorem.}
 
+\begin{proof}
+	Assuming the Schröder-Bernstein theorem, we can create an injective function $f:S \rightarrow \R^2$ by defining $f$ as $f(x,y) \rightarrow (x,y)$ where any pair $(x,y) \in S$ will give itself in $\R^2$. This shows that $\mid S \mid \le \mid \R^2 \mid$. To create an injective function $g : \R^2 \rightarrow S$, we can define $g$ as,
+	\begin{equation*}
+		g(x,y) \rightarrow
+		\begin{cases}
+			\left(x,\left(\frac{1}{2} + 2^{-y-1}\right)\right) , & y > 0\\
+			\left(x,\frac{1}{2}\right), & y = 0\\
+			\left(x, 2^{y-1}\right), & y < 0
+		\end{cases}\,.
+	\end{equation*}
+	This shows that $\mid \R^2 \mid \le \mid S \mid$, and because of the Schröder-Bernstein theorem, we must have that $\mid S \mid = \mid \R^2 \mid$.
+\end{proof}
+
+% cantor's theorem
 \question{4}{Prove the theorem whose proof we didn't complete in class: For any set $A$, we have $\mid A \mid < \mid 2^A \mid$.}
 
-
+\begin{proof}
+	(Contradiction) Assume there is a surjective function $f: A \rightarrow 2^A$, and let $S=\{x \in A \mid x \not\in f(x)\}$. Then there must exist $y \in A$ where $f(y) \in S$ as well. However, because of $S$'s definition, $y \in S$ if and only if $y \not\in f(y)$. This contradicts the initial assumption where $f$ is a surjective function, instead, $f$ must be an injective function which means $\mid A \mid < \mid 2^A \mid.$
+\end{proof}
 
 	
 \end{document}
