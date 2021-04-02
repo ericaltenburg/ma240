@@ -92,10 +92,14 @@ Figure~\ref{ep_nec} is an example of a graph with an Euler path but not an Euler
 \question{2}{Formulate a conjecture about which graphs admit an Euler path. You may wish to experiment by drawing different graphs, trying to draw an Euler path, and consider the properties of the graph. Then write down some ideas for proving your conjecture, and be prepared to explain them in class.}
 
 \begin{conjecture}
-	If a graph $G$ has exactly 2 vertices with odd degrees, then it has an Euler path.
+	A graph $G$ has an Euler path IFF it has at most 2 vertices with odd degrees.
+	% If a graph $G$ has exactly 2 vertices with odd degrees, then it has an Euler path.
 \end{conjecture}
 
-I'm not sure how to \textit{formally} prove this other than by talking through it. However, we know that ignoring beginning and end vertices, we know that any other vertex must have an edge that can let you reach it while also having an edge that allows you to leave it. This means any vertex that isn't the beginning or end must have an even degree. And because you begin and end at different points, it must be that there is one extra edge leaving the beginning node than there are those that lead to it. To end on a specific node that is not the beginning, the end node must have one less edge that leads to it than those that can lead away from it. This gives two nodes that must have an odd degree as shown in Figure~\ref{numtwo}.
+($\Longrightarrow$)
+
+Case 1: 0 odd degrees, then Euler circuit.\\
+Case 2: I'm not sure how to \textit{formally} prove this other than by talking through it. However, we know that ignoring beginning and end vertices, we know that any other vertex must have an edge that can let you reach it while also having an edge that allows you to leave it. This means any vertex that isn't the beginning or end must have an even degree. And because you begin and end at different points, it must be that there is one extra edge leaving the beginning node than there are those that lead to it. To end on a specific node that is not the beginning, the end node must have one less edge that leads to it than those that can lead away from it. This gives two nodes that must have an odd degree as shown in Figure~\ref{numtwo}.
 
 \begin{figure}[ht]
 	\centering
@@ -113,6 +117,14 @@ I'm not sure how to \textit{formally} prove this other than by talking through i
 	\label{numtwo}
 \end{figure}
 
+($\Longleftarrow$) Induction on number of edges.\\
+Base case: 1 edge.\\
+Figure~\ref{ep_nec}, or it connects to itself like the $start$ vertex like in Figure~\ref{numtwo}.\\
+Inductive Hypothesis:\\
+Assume it works for every connected graph with $k$ edges with at most 2 vertices of odd degree.\\
+Case 1: Add new edge by adding new vertex. All $(x,y)$ suppose $deg(x)$=odd. Then $G^+$ follows the property. Extend the Euler path from the end point to the new vertex.\\
+Case 2: Add new edge by adding new vertex, but $x$ is even. So G must not have any odd degrees. Then start at $y$ and follow the regular circuit ending on $x$.
+Case 3: Add new edge by connecting two existing vertices. $x$ and $y$ must be odd which would make them even which gives a circuit.
 
 \question{3}{Consider the house whose floor plan is shows below. Starting from any of the rooms or the outside, can you take a tour of the house that involves walking through each doorway exactly once? Explain.}
 

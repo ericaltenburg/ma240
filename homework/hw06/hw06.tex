@@ -43,7 +43,7 @@
 %Section A==============Change the values below to match your information==================
 \newcommand\NAME{Eric Altenburg}  % your name
 \newcommand\COURSE{MA-240}
-\newcommand\HWNUM{6}              % the homework number
+\newcommand\HWNUM{6 Corrections}              % the homework number
 %Section B==============Put your answers to the questions below here=======================
 
 % no need to restate the problem --- the graders know which problem is which,
@@ -67,7 +67,7 @@
 	\end{enumerate}
 \end{proof}
 
-Description: Geometrically, the equivalence classes formed for the relation $((a,b),(c,d)) \in R$ take the shape of a diamond centered at the point $(0,0)$. All of its sides are the same length $n$, where $n = |a| + |b|$.
+Description: Geometrically, the equivalence classes for the relation $((a,b),(c,d)) \in R$ take the shape of a diamond centered at the point $(0,0)$ except for the class $((0,0),(0,0))$ as that is just one point at $(0,0)$. Aside from the latter equivalence class, all the sides of any given equivalence class's diamond have the same length $n$, where $n = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$ and $(x_1,y_1), (x_2,y_2)$ are the $x \text{ and } y \text{ intercepts}$ of the diamond.
 
 \part{The relation $S$ defined on the set of positive rational numbers $\Q_{>0}$ by $(a,b) \in S \text{ if } \frac{a}{b}= 2^n$ for some $n \in \Z$.}
 
@@ -129,14 +129,14 @@ Description: There are a series of lines that begin at $(2^n, 1)$ where $n \in \
 
 \part{Addition: $[a] +[b] = [a+b]$}
 \begin{proof}
-	Suppose $[a] = [a']$ and $[b]=[b']$, then from this we can say $a = a'+xn$ and $b = b'+yn$, where $x,y \in \R$. Then, $a+b = a' + b' + n(x + y) \Rightarrow [a+b] = [a'+b']$. To show the existence of identity, $[a] + [0] = [a + 0] = [a]$. Finally, to show the existence of inverse, let's say $[a+(n-a)] = [0]$ which gives us the inverse of $[a]$ being $[n-a]$.
+	Suppose $[a] = [a']$ and $[b]=[b']$, then from this we can say $a = a'+xn$ and $b = b'+yn$, where $x,y \in \Z$. Then, $a+b = a' + b' + n(x + y) \Rightarrow [a+b] = [a'+b']$. To show the existence of identity, $[a] + [0] = [a + 0] = [a]$. Finally, to show the existence of inverse, let's say $[a+(n-a)] = [0]$ which gives us the inverse of $[a]$ being $[n-a]$.
 \end{proof}
 
 \pagebreak
 
 \part{Multiplication: $[a]\cdot[b] = [a\cdot b]$}
 \begin{proof}
-	Suppose $[a]=[a']$ and $[b]=[b']$, then from this we can say $a=a'+xn$ and $b=b'+yn$, where $x,y \in \R$. Then,
+	Suppose $[a]=[a']$ and $[b]=[b']$, then from this we can say $a=a'+xn$ and $b=b'+yn$, where $x,y \in \Z$. Then,
 	\begin{align*}
 	 	a \cdot b &= (a'+xn) \cdot (b'+yn)\\
 	 	a \cdot b &= a'b' + a'yn + b'xn + n^2xy\\
