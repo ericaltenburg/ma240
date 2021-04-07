@@ -1,0 +1,86 @@
+%=======================02-713 LaTeX template, following the 15-210 template==================
+%
+% You don't need to use LaTeX or this template, but you must turn your homework in as
+% a typeset PDF somehow.
+%
+% How to use:
+%    1. Update your information in section "A" below
+%    2. Write your answers in section "B" below. Precede answers for all 
+%       parts of a question with the command "\question{n}{desc}" where n is
+%       the question number and "desc" is a short, one-line description of 
+%       the problem. There is no need to restate the problem.
+%    3. If a question has multiple parts, precede the answer to part x with the
+%       command "\part{x}".
+%    4. If a problem asks you to design an algorithm, use the commands
+%       \algorithm, \correctness, \runtime to precede your discussion of the 
+%       description of the algorithm, its correctness, and its running time, respectively.
+%    5. You can include graphics by using the command \includegraphics{FILENAME}
+%
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning, arrows}
+\tikzset{
+	% ->, % makes the edges directed
+	% >=stealth’, % makes the arrow heads bold
+	node distance=3cm, % specifies the minimum distance between two nodes. Change if necessary.
+	every state/.style={thick, fill=gray!10}, % sets the properties for each ’state’ node
+	initial text=$ $, % sets the text that appears on the start arrow
+}
+\newtheorem{theorem}{Theorem}
+\newtheorem{conjecture}{Conjecture}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\setlength{\headheight}{13.6pt}
+\newcommand\question[2]{\vspace{.25in}\hrule\textbf{#1}: #2\vspace{.5em}\hrule\vspace{.10in}}
+\renewcommand\part[1]{\vspace{.10in}(#1)\par}
+\newcommand\algorithm{\vspace{.10in}\textbf{Algorithm: }}
+\newcommand\correctness{\vspace{.10in}\textbf{Correctness: }}
+\newcommand\runtime{\vspace{.10in}\textbf{Running time: }}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\pagestyle{fancyplain}
+\lhead{\textbf{\NAME}}
+\chead{\textbf{{\COURSE} Lesson \HWNUM \text{ }Exercises}}
+\rhead{\today}
+\begin{document}\raggedright
+%Section A==============Change the values below to match your information==================
+\newcommand\NAME{Eric Altenburg}  % your name
+\newcommand\COURSE{MA-240}
+\newcommand\HWNUM{17}              % the homework number
+%Section B==============Put your answers to the questions below here=======================
+
+% no need to restate the problem --- the graders know which problem is which,
+% but replacing "The First Problem" with a short phrase will help you remember
+% which problem this is when you read over your homeworks to study.
+
+\textbf{Pledge:} \textit{I pledge my honor that I have abided by the Stevens Honor System.} -Eric Altenburg
+
+\question{1}{A key insight to proving Zermelo's theorem is to observe that games correspond to finite trees (recall that a tree is a connected graph without cycles). Explain why every game corresponds to a finite tree.}
+Every game can correspond to a finite tree such that each internal node is a reachable move by a player from the parent node's position, and every leaf of the tree is when a player has either won or a draw happened. You can then have each of these nodes be represented with three different states. Suppose one is white for one player, black is for the second player, and gray for when there is a draw. Now for any given node in the tree, it will be colored white if that player has the next move or if it has a child that is colored white, black if that player has the next move or if it has a child that is colored white, or gray if the node has a gray child. At this point the root should either be colored white, black, or gray where if it's not gray, then either of those two players will be able to force a win. As the player, from the root, you simply follow your colors all the way down until you can win, if at any point you can only take a gray path, then follow that path down to force a draw.
+
+\question{2}{Is it also true that any finite tree can be realized as the tree of some game? Explain.}
+
+I would be inclined to say that it is true because as with the strategy given above, there is always a move that can be made from either two players' points of view. If at any given node, it is colored white and you are the white player, then simply keep on following the white node path that leads to a white leaf. If at any given node it is colored black and you are the black player, then simply follow the black node path that lead to a black leaf. If this cannot be followed, then there must exist a gray node at some point in the path for either player, then at this point, they will have to follow the gray nodes to a draw or their color if it leads to their respective leaf.
+
+\question{3}{Try to sketch a proof of Zermelo's theorem. Write down your ideas.}
+
+\begin{proof}
+	Using the idea of a graph from question 1, I would take each path that leads to a players win and make it a set. This would be the set containing all the moves a player can make that would give them a victory regardless of what the other player does. It is possible though that this set can be empty, and if this is the case, then that means it is a draw. So this does not necessarily show that a player can know if they are at an advantage, therefore, you can maybe create another set where if a player is going to lose, they can make an infinite number of moves to postpone their lose making this a draw. It is possible now for this set to be finite such that the stalling player can make their moves, but the other player can play the correct moves leading to their win. And in this scenario, that means that the non-stalling player was able to force a win showing that at any point a player can know if they are at an advantage.
+\end{proof}
+Where I think my logic gets shaky though is by saying that the stalling player can make an infinite amount of moves to prevent their loss. This would not be possible though because the tree cannot be finite, eventually it will have to end. Actually, maybe this helps my proof, I'm not sure anymore.
+
+\question{4}{What about games like chess, where draws are allowed? Do you think that the statement of Zermelo's theorem, suitably modified, can be extended to such games? If so, how should the statement of the theorem be modified?}
+
+I would say so, the statement would simply have to be modified such that it adds an additional condition where each of the two players can force the other into a draw. 
+
+
+
+
+
+	
+\end{document}
