@@ -69,6 +69,15 @@ I would be inclined to say that it is true because as with the strategy given ab
 
 \question{3}{Try to sketch a proof of Zermelo's theorem. Write down your ideas.}
 
+\begin{enumerate}
+	\item All leaves are winning positions for player A
+	\item Some leaves are winning positions for player B
+\end{enumerate}
+
+If 1, play anything
+If 2, strategy is: $f:V(t) \rightarrow \{moves\}$
+
+
 \begin{proof}
 	Using the idea of a graph from question 1, I would take each path that leads to a players win and make it a set. This would be the set containing all the moves a player can make that would give them a victory regardless of what the other player does. It is possible though that this set can be empty, and if this is the case, then that means it is a draw. So this does not necessarily show that a player can know if they are at an advantage, therefore, you can maybe create another set where if a player is going to lose, they can make an infinite number of moves to postpone their lose making this a draw. It is possible now for this set to be finite such that the stalling player can make their moves, but the other player can play the correct moves leading to their win. And in this scenario, that means that the non-stalling player was able to force a win showing that at any point a player can know if they are at an advantage.
 \end{proof}
