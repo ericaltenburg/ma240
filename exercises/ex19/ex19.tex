@@ -1,0 +1,95 @@
+%=======================02-713 LaTeX template, following the 15-210 template==================
+%
+% You don't need to use LaTeX or this template, but you must turn your homework in as
+% a typeset PDF somehow.
+%
+% How to use:
+%    1. Update your information in section "A" below
+%    2. Write your answers in section "B" below. Precede answers for all 
+%       parts of a question with the command "\question{n}{desc}" where n is
+%       the question number and "desc" is a short, one-line description of 
+%       the problem. There is no need to restate the problem.
+%    3. If a question has multiple parts, precede the answer to part x with the
+%       command "\part{x}".
+%    4. If a problem asks you to design an algorithm, use the commands
+%       \algorithm, \correctness, \runtime to precede your discussion of the 
+%       description of the algorithm, its correctness, and its running time, respectively.
+%    5. You can include graphics by using the command \includegraphics{FILENAME}
+%
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning, arrows}
+\tikzset{
+	% ->, % makes the edges directed
+	% >=stealth’, % makes the arrow heads bold
+	node distance=3cm, % specifies the minimum distance between two nodes. Change if necessary.
+	every state/.style={thick, fill=gray!10}, % sets the properties for each ’state’ node
+	initial text=$ $, % sets the text that appears on the start arrow
+}
+\newtheorem{theorem}{Theorem}
+\newtheorem{conjecture}{Conjecture}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\setlength{\headheight}{13.6pt}
+\newcommand\question[2]{\vspace{.25in}\hrule\textbf{#1}: #2\vspace{.5em}\hrule\vspace{.10in}}
+\renewcommand\part[1]{\vspace{.10in}(#1)\par}
+\newcommand\algorithm{\vspace{.10in}\textbf{Algorithm: }}
+\newcommand\correctness{\vspace{.10in}\textbf{Correctness: }}
+\newcommand\runtime{\vspace{.10in}\textbf{Running time: }}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\pagestyle{fancyplain}
+\lhead{\textbf{\NAME}}
+\chead{\textbf{{\COURSE} Lesson \HWNUM \text{ }Exercises}}
+\rhead{\today}
+\begin{document}\raggedright
+%Section A==============Change the values below to match your information==================
+\newcommand\NAME{Eric Altenburg}  % your name
+\newcommand\COURSE{MA-240}
+\newcommand\HWNUM{19}              % the homework number
+%Section B==============Put your answers to the questions below here=======================
+
+% no need to restate the problem --- the graders know which problem is which,
+% but replacing "The First Problem" with a short phrase will help you remember
+% which problem this is when you read over your homeworks to study.
+
+\textbf{Pledge:} \textit{I pledge my honor that I have abided by the Stevens Honor System.} -Eric Altenburg
+
+\question{1}{Do you think the least upper bound principle applies to the set of rational numbers? Explain.}
+No the least upper bound principle does not apply to the set of rational numbers. Consider the set $A = \{x \in \Q : x^2 < 2\}$, this is clearly a subset of $\Q$ which implies that $A$ is a subset of $\R$ as well. From this, we also know that $A$ is not empty because $1 \in A$, and since this set technically follows the definition of the least upper bound principle, then that must mean there is a supremum $b = \sup(A)$. From the inequality set up in the definition, $(x^2 < 2)$, this implies that $x < \sqrt{2}$ so any number that is greater than $\sqrt{2}$ cannot be the least upper bound. Additionally, if we assume that $b < \sqrt{2}$, then there must exist some number $c \in \R$ where $b < c < \sqrt{2}$ however this would mean that $c^2 < \sqrt{2}$ and $c \in A$. Since $b < c$, then any number that is less than $\sqrt{2}$ also cannot be the least upper bound. Finally, the only option left would be for $b=\sqrt{2}$ but since $\sqrt{2} \not \in \Q$, then that means it cannot be a least upper bound as well.
+
+\question{2}{Likewise, do you think the intermediate value theorem still holds if we replace the real numbers with the rational numbers?}
+
+No I do not think the intermediate value theorem will hold for the rational numbers either because we can construct a function $f$ such that:
+	\begin{equation*}
+		f(x) = 
+		\begin{cases}
+			0 & \text{if $x^2 < 2$}\\
+			1 & \text{else $x^2 > 2$}
+		\end{cases}\,.
+	\end{equation*}
+	This is still a continuous function on $\Q$, but because $\sqrt{2} \not \in \Q$, however, because of this, it is also not continuous on $\Q$ so there is no intermediate value when $x=\sqrt{2}$.
+
+
+\question{3}{Does the intermediate value theorem hold if the function $f$ is not required to be continuous? Explain.}
+
+I do not think it holds if $f$ is not continuous because then that means on the range $[a,b]$ there might exist a value $c$ that will be "skipped over" which means the intermediate value theorem would be false.
+
+
+\question{4}{Why is the set $A=\{x \in [a,b] \mid f(x) < d\}$ nonempty and bounded?}
+
+I am having a bit of difficulty showing that $A$ would be nonempty simply because it seems like one of those proofs that should be self-explanatory. To me it would seem that the set would just contain all the $x$ values in $[a,b]$ to the left of the value where $f(x) = d$. Also, it would be bounded and finite because it has an upper limit (and lower) on what values of $x$ are allowed membership. The lower would be $a$ and upper limit would be where $f(x) =d$.
+
+
+\question{5}{Putting $c=\sup(A)$, argue that $f(c) = d$, thus completing the proof of the intermediate value theorem. \textit{Hint: You will need to make careful use of the definition of continuity!}}
+
+So we know that the set $A$ is a subset of the real numbers, therefore, it has has an upper bound that is where $f(x)=d$. With this, then I would think we can simply say that since the upper bound of $A$ is $x$ where $f(x)=d$ and it is also the least possible bound as well given the definition of the set, and since the sumpremum can be the same number as the bound, it would make sense that we can substitute $c$ which is the supremum of $A$ for $x$ to get $d$. $$(f(x) = d \equiv f(c=\sup{A}) = d)$$
+
+	
+\end{document}
