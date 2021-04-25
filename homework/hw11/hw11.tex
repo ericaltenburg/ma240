@@ -1,0 +1,117 @@
+%=======================02-713 LaTeX template, following the 15-210 template==================
+%
+% You don't need to use LaTeX or this template, but you must turn your homework in as
+% a typeset PDF somehow.
+%
+% How to use:
+%    1. Update your information in section "A" below
+%    2. Write your answers in section "B" below. Precede answers for all 
+%       parts of a question with the command "\question{n}{desc}" where n is
+%       the question number and "desc" is a short, one-line description of 
+%       the problem. There is no need to restate the problem.
+%    3. If a question has multiple parts, precede the answer to part x with the
+%       command "\part{x}".
+%    4. If a problem asks you to design an algorithm, use the commands
+%       \algorithm, \correctness, \runtime to precede your discussion of the 
+%       description of the algorithm, its correctness, and its running time, respectively.
+%    5. You can include graphics by using the command \includegraphics{FILENAME}
+%
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning, arrows}
+\tikzset{
+	% ->, % makes the edges directed
+	% >=stealth’, % makes the arrow heads bold
+	node distance=3cm, % specifies the minimum distance between two nodes. Change if necessary.
+	every state/.style={thick, fill=gray!10}, % sets the properties for each ’state’ node
+	initial text=$ $, % sets the text that appears on the start arrow
+}
+\newtheorem{theorem}{Theorem}
+\newtheorem{conjecture}{Conjecture}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\setlength{\headheight}{13.6pt}
+\newcommand\question[2]{\vspace{.25in}\hrule\textbf{#1}: #2\vspace{.5em}\hrule\vspace{.10in}}
+\renewcommand\part[1]{\vspace{.10in}(#1)\par}
+\newcommand\algorithm{\vspace{.10in}\textbf{Algorithm: }}
+\newcommand\correctness{\vspace{.10in}\textbf{Correctness: }}
+\newcommand\runtime{\vspace{.10in}\textbf{Running time: }}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Lim}[1]{\raisebox{0.5ex}{\scalebox{0.8}{$\displaystyle \lim_{#1}\;$}}}
+\pagestyle{fancyplain}
+\lhead{\textbf{\NAME}}
+\chead{\textbf{{\COURSE} Homework \HWNUM}}
+\rhead{\today}
+\begin{document}\raggedright
+%Section A==============Change the values below to match your information==================
+\newcommand\NAME{Eric Altenburg}  % your name
+\newcommand\COURSE{MA-240}
+\newcommand\HWNUM{11}              % the homework number
+%Section B==============Put your answers to the questions below here=======================
+
+% no need to restate the problem --- the graders know which problem is which,
+% but replacing "The First Problem" with a short phrase will help you remember
+% which problem this is when you read over your homeworks to study.
+
+\textbf{Pledge:} \textit{I pledge my honor that I have abided by the Stevens Honor System.} -Eric Altenburg
+
+\question{1}{Use the epsilon-delta definition of continuity to prove that the function $f(x) = 1-5x$ is continuous at $x=2$.}
+
+\begin{proof}
+	Let $\epsilon > 0$ be given. Choose $\delta = \frac{\varepsilon}{5}$. Then for $|x-2| < \delta$, this gives 
+	\begin{align*}
+		|f(x)-f(2)| &= |(1-5x)-(1-5(2))|\\
+		&= |1-5x + 9|\\
+		&= |-5x+10|\\
+		&= |-5||x-2|,
+	\end{align*}
+	and now we have
+	\begin{align*}
+		|-5||x-2| &< |-5| \cdot \delta\\
+		|-5||x-2| &< 5 \cdot \frac{\varepsilon}{5}\\
+		|-5||x-2| &< \varepsilon
+	\end{align*}
+	thus showing that $f(x)$ is continuous at $x=2$.
+\end{proof}
+
+\question{2}{Prove that every nonempty subset $A\subseteq\mathbb{R}$ that has a lower bound has a greatest lower bound, also known as the \textit{infimum} and denoted $\inf(A)$.}
+\begin{proof}
+	Let $a$ be a lower bound in $A$, then $a \le x$ for all $x \in A$. For every $x \in A$, multiplying both this and $a$ by $-1$ would give $-x \le -a$ which would be the same as saying $y \le -a$ for all $y \in -A$. This then implies that the new set $-A$, where every $ x \in A$ has been multiplied by $-1$, is nonempty and now bounded above. Therefore, by the Least Upper Bound Principle, there is a least upper bound $b \in -A$. Now we show that $-b$ is the greatest lower bound of $A$.
+
+	To show that $-b$ is a lower bound for $A$, assume the opposite; that $-b$ is not a lower bound for $A$. Then there is a $z \in A$ such that $z < -b$, but multiplying both sides by $-1$ gives $-z > b$. Since $-z \in -A$, this contradicts the fact that $b$ is a least upper bound of $-A$.
+
+	To show there is no number greater than $-b$ that is a lower bound for $A$, assume the opposite; that there exists a number greater than $-b$ that is a lower bound for $A$. Let $j$ be a lower bound of $A$ such that $-b < j$. Multiplying both sides by $-1$ gives $b > -j$. This then implies that $y \le -j < b$ for all $y \in -A$, however, this is a contradiction as well because we said that $b$ was the least upper bound in $-A$. 
+
+	Since $-b$ is a lower bound for $A$, and there is no greater number that is also a lower bound of $A$, then $-b$ must be the greatest lower bound of $A$.
+\end{proof}
+
+\newpage
+
+\question{3}{Let $\Q = \{q_1, q_2, \ldots, q_n, \ldots\}$ be an enumeration of the rational numbers (note that the existence of such an enumeration follows from the fact that $\Q$ is countable). Then define $f:\R \rightarrow \R$ as
+\begin{equation*}
+		f(x) =
+		\begin{cases}
+			\frac{1}{n} & \text{if $x=q_n$}\\
+			0 & \text{otherwise}
+		\end{cases}\,.
+\end{equation*}
+Prove that $f(x)$ is continuous if and only if $x$ is irrational.}
+
+\begin{proof}
+	($\Longrightarrow$) Let $x_0 \in \R$ be a rational number, then based on $f$, we know $f(x_0) > 0$. Since we know that there are many irrational numbers, we say there is a sequence $a_1, a_2, a_3, \ldots \in \R$ of irrational numbers such that $a_n$ approaches $x_0$ as $n$ approaches infinity. This then gives us $\Lim{n \rightarrow \infty} a_n = x_0$, however, we know that $\Lim{n \rightarrow \infty}f(a_n) = 0 \not = f(x_0)$. Therefore, this shows that $f$ is not continuous when $x_0$ is rational.
+
+	($\Longleftarrow$) Let $x_0, x \in \R$ be irrational, and suppose that $\varepsilon > 0$. Then we can choose $y$ where $y > \frac{1}{\varepsilon}$ and $y \in \Z$. From this, we can define a range containing every irrational number where its denominator is less than $y$. With $\delta > 0$, the interval is $(x_0 - \delta, x_0 + \delta)$ which is a subset of $\R$. Now, if $x \in (x_0 - \delta, x_0 + \delta)$ and it is irrational, then $f(x)=0$. Additionally, if $x \in (x_0 - \delta, x_0 + \delta)$ and it is rational, then we have the inequality $0 < f(x) \le \frac{1}{y} < \varepsilon$. Regardless of whether or not $x$ is rational or irrational, we have that $|f(x)| < \varepsilon$. So with $x \in (x_0 - \delta, x_0 + \delta)$, $|x-x_0| < \delta$, and $|f(x)| < \varepsilon$, this implies $|f(x)-f(x_0)| < \varepsilon$. Therefore, this shows that $f$ is continuous at $x_0$.
+\end{proof}
+
+
+
+
+	
+\end{document}
