@@ -51,7 +51,7 @@
 %Section A==============Change the values below to match your information==================
 \newcommand\NAME{Eric Altenburg}  % your name
 \newcommand\COURSE{MA-240}
-\newcommand\HWNUM{9}              % the homework number
+\newcommand\HWNUM{9 Corrections}              % the homework number
 %Section B==============Put your answers to the questions below here=======================
 
 % no need to restate the problem --- the graders know which problem is which,
@@ -73,10 +73,14 @@
 \begin{proof}
 	$(\Longrightarrow)$ If a graph $G=(V,E)$ is bipartite, then it has no odd-length circuits. Then $G$'s vertices $V=V_1 \sqcup V_2$ with an edge $E$ connecting a vertex from $V_1$ to $V_2$. This means that while traversing the circuit, each edge will always lead from $V_1$ to $V_2$ or $V_2$ to $V_1$. Because a circuit requires that you end at the same vertex you start at, when traversing from the set $V_1$ to $V_2$ back to $V_1$, or $V_2$ to $V_1$ back to $V_2$, this will always be 2 moves. Going to the opposite set and back will occur $m$ times until you end at the same vertex you started out at, and so the length will be $2\cdot m$ which means the circuit will always have an even length.
 
-	$(\Longleftarrow)$ If there are no odd-length circuits in a graph $G=(V,E)$, then $G$ is bipartite. Assume that every circuit in $G$ is of even-length. Now, choose any vertex in $G$ to be $v_0$, and any other vertex in $G$ to be $u$. For any $u$ in $G$ we can define the shortest path from $v_0$ to $u$ to be $d(v_0,u)$. Using this new function, starting at $v_0$ label it as $EVEN$, and for all other vertices in $G$ represented as $u$, if $d(v_0, u)$ returns a path that is of even length, then label $u$ as $EVEN$, else if it is ODD, then label $u$ as $ODD$. Now we have a graph where every vertex is labeled as either $EVEN$ or $ODD$; these two labels will form the two sets that each vertex will belong to for the bipartite graph. If there is any edge that connects two vertices with the same label (i.e. $ODD$ to $ODD$ or $EVEN$ to $EVEN$), then there must be a cycle with an odd length. If this is true, then this means there will be two vertices that belong to the same set and are directly connected with an edge making $G$ a non-bipartite graph. However, if this is not true and no like-labeled vertices are connected with an edge, then all cycles must be of even-length and so $G$ a bipartite graph such that $V=EVEN \sqcup ODD$.
-\end{proof}
+	$(\Longleftarrow)$ If there are no odd-length circuits in a graph $G=(V,E)$, then $G$ is bipartite. Assume that every circuit in $G$ is of even-length. Now, choose any vertex in $G$ to be $v_0$, and any other vertex in $G$ to be $u$. For any $u$ in the same component $C_0$ as $v_0$ in $G$ we can define the length of the shortest path from $v_0$ to $u$ to be $d(v_0,u)$. Using this new function, starting at $v_0$ in $C_0$ label it as $EVEN$, and for all other vertices in $C_0$ represented as $u$, if $d(v_0, u)$ returns a path that is of even length, then label $u$ as $EVEN$, else if it is ODD, then label $u$ as $ODD$. Repeat this for every component in $G$. 
 
-\newpage
+	Now we have a graph where every vertex is labeled as either $EVEN$ or $ODD$; these two labels will form the two sets that each vertex will belong to for the bipartite graph. If there is any edge that connects two vertices with the same label (i.e. $ODD$ to $ODD$ or $EVEN$ to $EVEN$), then there must be a cycle with an odd length. 
+
+	To show this is true, suppose the first vertex is $v_1$ and the other is $v_2$. If both $v_1$ and $v_2$ have a label of $EVEN$, then they must have an even distance from $v_0$. If we take these two lengths and account for the edge that joins them, then for some $k$ we will get a cycle starting from $v_0$ of length $$EVEN+EVEN+1 = 2k + 2k + 1 = 2(2k)+1$$ which is an odd number. Additionally, if $v_1$ and $v_2$ were labeled as $ODD$ and accounting for the additional edge joining them, for some $k$ we get a cycle from $v_0$ that has the length $$ODD + ODD + 1 = (2k+1)+(2k+1)+1 = 2(2k+1)+1$$ which is an odd number as well. 
+
+	Therefore, knowing now that the cycles would be of odd length, then this means there will be two vertices that belong to the same set and are directly connected with an edge making $G$ a non-bipartite graph. However, if this is not true and no like-labeled vertices are connected with an edge, then all cycles must be of even-length and so $G$ a bipartite graph such that $V=EVEN \sqcup ODD$.
+\end{proof}
 
 \question{3}{A \textit{bidirectional Euler circuit} is a circuit in which each edge is traveled exactly twice, once in each direction. Prove that every finite connected graph has a bidirectional Euler circuit.}
 
