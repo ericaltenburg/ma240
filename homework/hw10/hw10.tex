@@ -51,7 +51,7 @@
 %Section A==============Change the values below to match your information==================
 \newcommand\NAME{Eric Altenburg}  % your name
 \newcommand\COURSE{MA-240}
-\newcommand\HWNUM{10}              % the homework number
+\newcommand\HWNUM{10 Corrections}              % the homework number
 %Section B==============Put your answers to the questions below here=======================
 
 % no need to restate the problem --- the graders know which problem is which,
@@ -88,9 +88,15 @@
 
 \question{3}{Consider a version on Nim that is just like regular Nim except the player who takes the last token \textit{loses}. Describe a winning strategy for this version of Nim, and prove your answer.}
 \begin{proof}
-	It is important to note that if the game has the Nim positions initially balanced, the opponent will have the winning strategy so the player must wait until their opponent makes a mistake this way the player can balance the Nim positions. Additionally, as it was shown in class we know that on a balanced Nim position, there is only one possible move and it is to unbalance it. If the Nim position is already unbalanced, then there is a move that a player can make to balance it.
+	It is important to note that if the game has the Nim positions initially balanced, the player who goes second (Alice) will have the winning strategy so the player who goes first (Bob) must wait until Alice makes a mistake this way Bob can balance the Nim positions. Additionally, as it was shown in class we know that on a balanced Nim position, there is only one kind of move and it is to unbalance it. If the Nim position is already unbalanced, then there is a move that a player can make to balance it.
 
-	To begin the winning strategy for a player, let Alice (Player 1) make the first move to balance the Nim position. Since the current state of the game is balanced, Bob (Player 2) has no choice but to unbalance it. Because it is unbalanced, Alice can then take the balancing move. This balancing from Alice and unbalancing from Bob will continue until all the heaps are of size 1. From here, Alice must make sure to leave an odd number of heaps with a size of 1 to force a win. A win can be forced from this position because we know that the first player to pick a token from the odd-number of heaps will choose the token from the last heap as well subsequently causing them to lose. Therefore, to win, a player must leave an odd number of heaps all of size 1 this way their opponent will take the first token guaranteeing they will also take the last token as well.
+	To begin the winning strategy for a player, we must consider the various initial conditions:
+
+	Case 1: The initial configuration is balanced. Let Bob make the first move to unbalance the Nim positions. Since it is now unbalanced, Alice can make the balancing move subsequently forcing Bob to always make the move to unbalance the Nim positions. This balancing from Alice and unbalancing from Bob will continue until there is one heap left with at least two tokens in it, let's call it $h$. It should be noted that $h$ may not be the only heap left, it is possible that there are $n$ amounts of heaps with exactly one token in it.
+
+	In this configuration, if there is an even amount of heaps with one token, then Alice should remove all but one token in $h$ giving an odd-number of heaps with one token in it. However, if initially there are an odd-number of heaps with one token in it, then Alice should remove an entire heap—be it $h$ or any of the single token heaps—which would result in an odd-number of single token heaps. A win can be forced from this position because we know that the first player to pick a token from the odd-number of heaps will choose the token from the last heap as well subsequently causing them to lose. Bob will always be this said player giving Alice the winning strategy. 
+
+	Case 2: The initial configuration is unbalanced. Let Alice make the first move to balance the Nim positions. Since the current state of the game is balanced, Bob has no choice but to unbalance it. Because it is unbalanced, Alice can then take the balancing move. This balancing from Alice and unbalancing from Bob will continue mimicking case 1 giving Alice the winning strategy. 
 \end{proof}
 
 

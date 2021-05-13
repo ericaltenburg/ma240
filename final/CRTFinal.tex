@@ -1,0 +1,104 @@
+\documentclass[12pt,a4paper,reqno,parskip=full]{amsart}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{colonequals}
+\usepackage{parskip}
+\usepackage{tikz}
+
+\begingroup
+\makeatletter
+\@for\theoremstyle:=definition,remark,plain\do{
+\expandafter\g@addto@macro\csname th@\theoremstyle\endcsname{
+\addtolength\thm@preskip\parskip}}
+\endgroup
+
+\numberwithin{equation}{section}
+\addtolength{\textwidth}{3 truecm}
+\addtolength{\textheight}{1 truecm}
+\setlength{\voffset}{-.6 truecm}
+\setlength{\hoffset}{-1.3 truecm}
+\theoremstyle{plain}
+
+\newtheorem{theorem}[subsection]{Theorem}
+\newtheorem{proposition}[subsection]{Proposition}
+\newtheorem{lemma}[subsection]{Lemma}
+\newtheorem{corollary}[subsection]{Corollary}
+\newtheorem{claim}[subsection]{Claim}
+\newtheorem{conjecture}[subsection]{Conjecture}
+\newtheorem{question}[subsection]{Question}
+\newtheorem{remark}[subsection]{Remark}
+
+\theoremstyle{definition}
+
+\newtheorem{definition}[subsection]{Definition}
+\newtheorem{example}[subsection]{Example}
+
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+\newcommand{\eps}{\varepsilon}
+
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\BS}{BS}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\Ham}{Ham}
+
+\def\AA{{\mathcal A}}
+\def\CC{{\mathcal C}}
+\def\DD{{\mathcal D}}
+\def\E{{\mathbb E}}
+\def\EE{{\mathcal E}}
+\def\FF{{\mathbb F}}
+\def\II{{\mathcal I}}
+\def\N{{\mathbb N}}
+\def\OO{{\mathcal O}}
+\def\PP{{\mathcal P}}
+\def\Q{{\mathbb Q}}
+\def\R{{\mathbb R}}
+\def\S{{\mathbb S}}
+\def\SS{{\mathcal S}}
+\def\UU{{\mathcal U}}
+\def\Z{{\mathbb Z}}
+
+\begin{document}
+
+\title{The Chinese Remainder Theorem}
+
+\author{Eric Altenburg}
+
+\begin{abstract}
+Write a brief abstract that summarizes your paper.
+\end{abstract}
+
+\maketitle
+
+
+
+\section{Introduction}
+
+Imagine that you are the discoverer of the theorem that was the topic of your class presentation, and that you are writing up the fruits of your labor to share with the world. Imagine that no one has seen your theorem before, so that you need to take extra care in reviewing the literature, laying down necessary definitions and lemmas, and clearly explaining your proof. Imagine that you must convince the mathematical community that your work is interesting and important. Imagine, in other words, that you are writing a research paper to submit for publication in a prestigious journal.
+
+Of course, both you and the instructor understand that you are not \emph{really} the discoverer of the theorem, and the goal is not to be dishonest! You are still responsible for carefully citing your sources.
+
+In the introduction of your paper, give a high-level description (that is, a description that doesn't go into too many technicalities) of your paper. Give an overview of the results leading up to your theorem (i.e.\ a review of the literature). Discuss and motivate your theorem.
+
+\section{Background}
+
+Provide the background knowledge needed to understand your theorem. What definitions or lemmas will the reader need to understand? In case you would like to introduce the theorem by way of some explicit example(s), consider doing so here.
+
+\section{Main result}
+
+State and write the proof of your theorem. It may be appropriate to give a lemma here as well. Be rigorous, and be sure to use \LaTeX\ theorem and proof environments. It is important that you write the proof \emph{in your own words}.
+
+\section{Applications and discussion}
+
+Describe at least one application or consequence of your theorem to mathematics or even to another field. If applicable, discuss open questions surrounding the theorem. Consider formulating a conjecture related to your theorem to which you don't know the answer, thereby highlighting directions for future research.
+
+\begin{thebibliography}{10}
+
+\bibitem{ThisIsaLabel} It is important that you cite \emph{all} of the sources that you used to research your theorem and list them in a bibliography. Be sure to cite your sources in the body of your paper as well. You can do this by creating a label for the citation within the bibliography.
+
+\end{thebibliography}
+
+\end{document}
