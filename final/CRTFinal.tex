@@ -5,6 +5,8 @@
 \usepackage{colonequals}
 \usepackage{parskip}
 \usepackage{tikz}
+\usepackage{hyperref}
+
 
 \begingroup
 \makeatletter
@@ -37,6 +39,7 @@
 \renewcommand{\leq}{\leqslant}
 \renewcommand{\geq}{\geqslant}
 \newcommand{\eps}{\varepsilon}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
 
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\BS}{BS}
@@ -68,7 +71,9 @@
 \author{Eric Altenburg}
 
 \begin{abstract}
-Write a brief abstract that summarizes your paper.
+We prove that an unknown can be found if it belongs to a system of linear congruences with coprime moduli.\\
+
+This is done through the use of a constructive proof in which the solution is constructed for the system and then proven to be unique. There are three key concepts that help to arrive at a solution. The first is the simple idea of the greatest common divisor. The second is that integers are congruent to a modulo if their difference divides said modulo. The final idea is that of modular inverses. All of these work together to create a solution to a problem that has uses in areas like computer science where this theorem can be used to help break down large computations into more manageable smaller processes which increases efficiency.
 \end{abstract}
 
 \maketitle
@@ -77,28 +82,217 @@ Write a brief abstract that summarizes your paper.
 
 \section{Introduction}
 
-Imagine that you are the discoverer of the theorem that was the topic of your class presentation, and that you are writing up the fruits of your labor to share with the world. Imagine that no one has seen your theorem before, so that you need to take extra care in reviewing the literature, laying down necessary definitions and lemmas, and clearly explaining your proof. Imagine that you must convince the mathematical community that your work is interesting and important. Imagine, in other words, that you are writing a research paper to submit for publication in a prestigious journal.
+The earliest known reference to the problem that the Chinese remainder Theorem aims to solve was found in China during the third century. It was there in which a Chinese mathematician by the name Sun-Tzu wrote a book titled \textit{Sun-Tzu Suan-ching} which first proposed the problem as:
 
-Of course, both you and the instructor understand that you are not \emph{really} the discoverer of the theorem, and the goal is not to be dishonest! You are still responsible for carefully citing your sources.
+\begin{quote}
+	There are certain things whose number is unknown. If we count them by threes, we have two left over; by fives, we have three leftover; and by sevens, two left over. How many things are there? \cite{elements-of-the-theory-of-number}
+\end{quote}
 
-In the introduction of your paper, give a high-level description (that is, a description that doesn't go into too many technicalities) of your paper. Give an overview of the results leading up to your theorem (i.e.\ a review of the literature). Discuss and motivate your theorem.
+While this certainly sparked an interest in the problem, the book did not offer a solution or a proof to a solution. It was not until 1247 when another Chinese mathematician—Ch'in Chiu-shao—was able to offer a solution with a generalized result in his own book titled \textit{Mathematical Treatise in Nine Sections} which was not translated to English until the 19th century by Alexander Wylie \cite{katz}. 
+
+In terms of mathematical notation, the problem prompt from Sun-Tzu was simply a word problem, however, the Chinese Remainder Theorem relies on the idea of congruences among others. History aside, the theorem holds its own in the realm of Number theory, and it is important to note that there are three key concepts in which it relies on to warrant a proof. The first is the simple idea that two numbers have a greatest common divisor. The second is that two integers can be congruent to a modulo if the difference between the said integers divides this modulo. The final concept is the existence of modular inverses in certain congruences. 
+
+These aforementioned concepts will be used while proving the solution, therefore, to help ensure a solid understanding of the Chinese Remainder Theorem's base, we will thoroughly visit several definitions. 
+
+Finally, it is worth going over the proof strategy being used to get a sense of how the proof will flow. We first want to show the existence of the solution by providing a method of creating such a solution, then we will show that it is unique.
+
+% This idea was first introduced in 1801 by Johann Carl Friedrich Gauss, a German mathematician and physicist, in his writing \textit{Disquisitiones Arithmeticae} \cite{Ireland}. Additionally, the idea of the greatest common denominator coupled is used to help derive 
+
+
+
+% Imagine that you are the discoverer of the theorem that was the topic of your class presentation, and that you are writing up the fruits of your labor to share with the world. Imagine that no one has seen your theorem before, so that you need to take extra care in reviewing the literature, laying down necessary definitions and lemmas, and clearly explaining your proof. Imagine that you must convince the mathematical community that your work is interesting and important. Imagine, in other words, that you are writing a research paper to submit for publication in a prestigious journal.
+
+% Of course, both you and the instructor understand that you are not \emph{really} the discoverer of the theorem, and the goal is not to be dishonest! You are still responsible for carefully citing your sources.
+
+% In the introduction of your paper, give a high-level description (that is, a description that doesn't go into too many technicalities) of your paper. Give an overview of the results leading up to your theorem (i.e.\ a review of the literature). Discuss and motivate your theorem.
 
 \section{Background}
+In this section, we will review some fundamental background material before proceeding into the formal proof of the Chinese Remainder Theorem.
 
-Provide the background knowledge needed to understand your theorem. What definitions or lemmas will the reader need to understand? In case you would like to introduce the theorem by way of some explicit example(s), consider doing so here.
+\begin{definition}\label{equivalence-classes}
+	When elements of a set $S$ have some property of equivalence defined on them, then $S$ can be split into \textit{equivalence classes.} For example, $[a]_n$ is the set of all integers that have the same remainder as $a$ when divided by $n$ \cite{Reluga}.
+\end{definition}
+
+\begin{definition}\label{congruent}
+	If $a$ and $b$ are integers and $c > 0$, then we can write $$a \equiv b \text{ mod } c$$ if and only if $c | (b-a)$. This can also be read as ``$a$ is \textit{congruent} to $b$ modulo $c$'' \cite{Hausner}. Additionally, it is worth noting that if $a \equiv b \text{ mod } c$, then $a$ and $b$ belong to the same equivalence class.
+\end{definition}
+
+Recall the concept of equivalence relations and how they must satisfy reflexivity, symmetry, and transitivity. To build on this, congruence modulo a number $m$ is also an equivalence relation. The following properties hold for every $m \in \N^+$.
+\begin{enumerate}
+	\item Reflexive: $a \equiv a \Mod{m}$ 
+	\item Commutative: If $a \equiv b \Mod{m}$, then $b \equiv a \Mod{m}$.
+	\item Transitive: If $a \equiv b \Mod{m}$ and $b \equiv c \Mod{m}$, then $a \equiv c \Mod{m}$.
+\end{enumerate}
+\cite{sandeep}
+\footnote{The following definition has been adapted from lectures 28 and 29 from Professor Bhatt at Stevens Institute of Technology, Department of Computer Science.\label{footnote:sandeep}}
+
+\begin{definition}
+	The \textit{greatest common divisor} (gcd) of two or more integers which are not all zero, is the largest possible integer that divides each of the integers. Given integers $x,y$, the greatest common divisor of $x$ and $y$ is written as $\gcd(x,y)$\cite{Long}.
+\end{definition}
+
+\begin{definition}\label{2.3}
+	If $a$ and $b$ are integers and $c>0$, then given that $c|a$ and $c|b$, we can say that $c|\gcd(a,b)$.
+\end{definition}
+
+\begin{definition}\label{extended-algo}
+	The \textit{extended Euclidean algorithm} is an extension to the Euclidean algorithm which computes the greatest common divisor of two integers, $a$ and $m$, along with the coefficients from Bézout's identity, integers $s$ and $t$, such that $$sa+tm=\gcd(a,m).$$	\cite{extended}
+\end{definition}
+
+Recall an integer multiplied by its inverse is 1. Similarly, in modular arithmetic we have modular inverses where an integer $a$ mod $m$ has the inverse of $a^{-1}$ such that $(a \cdot a^{-1}) \equiv 1 \Mod{m}$ or $(a \cdot a^{-1}) \text{ mod } m = 1$\cite{Khan}.
+
+\begin{lemma}\label{inverse}
+	Let $a,m \in \Z$. If $\gcd(a,m) = 1$, then $a^{-1}\Mod{m}$ exists.
+	\cite{sandeep}
+\end{lemma}
+
+\begin{proof}
+	Knowing that the $\gcd(a,m) = 1$, we can use Definition~\ref{extended-algo} and apply the extended Euclidean algorithm to expand this greatest common denominator. Doing so gives $sa+tm=\gcd(a,m)$ where $s,t \in \Z$. This allows us to manipulate $\gcd(a,m)=1$ where
+	\begin{align*}
+		\gcd(a,m)&=1 \\
+		sa+tm &= 1\\
+		tm &= 1-sa.
+	\end{align*}
+	We can then use Definition~\ref{congruent} to create a congruence of $$tm \equiv 1-sa \Mod{m},$$ and using commutativity, we obtain $$1-sa \equiv tm \Mod{m}.$$ Because $m|tm$, we get
+	\begin{align*}
+		1-sa &\equiv 0 \Mod{m}\\
+		sa &\equiv 1 \Mod{m}\\
+		s &\equiv a^{-1}\Mod{m}.
+	\end{align*}
+	This shows that we can derive a modular inverse such that when multiplied by a given number, in our case $s$, we can arrive at the congruence of the said quantity being congruent to 1 modulo another number, our $m$.
+	\ref{footnote:sandeep}			
+\end{proof}
+
+% Provide the background knowledge needed to understand your theorem. What definitions or lemmas will the reader need to understand? In case you would like to introduce the theorem by way of some explicit example(s), consider doing so here.
 
 \section{Main result}
 
-State and write the proof of your theorem. It may be appropriate to give a lemma here as well. Be rigorous, and be sure to use \LaTeX\ theorem and proof environments. It is important that you write the proof \emph{in your own words}.
+This section outlines the formal proof for the Chinese Remainder Theorem. At first, we spend time constructing a valid solution to the problem, and then prove it to be unique.
+
+\begin{theorem}
+	If $n_1, n_2, \ldots, n_k \in \N$ are pairwise relatively prime meaning that $\gcd(n_i, n_j) = 1$ for $i \ne j$, and $b_1, b_2, \ldots, b_k \in \Z$, then the system of linear congruences
+	\begin{align*}
+		x &\equiv b_1 \Mod{n_1}\\
+		x &\equiv b_2 \Mod{n_2}\\
+		\vdots\\
+		x &\equiv b_k \Mod{n_k}
+	\end{align*}
+	has a unique solution modulo $n_1 \cdot n_2 \cdot \ldots \cdot n_k$.
+\end{theorem}
+
+\begin{proof}
+	(Construction)
+
+	Let $N = n_1 \cdot n_2 \cdot \ldots \cdot n_k$ and $N_i = \frac{N}{n_i}$ where $N_i$ is simply $N$ without a multiple of any given $n_i$. 
+
+	\begin{claim}
+		$\gcd(N_i, n_i) = 1$
+	\end{claim}
+
+	\begin{quote}
+		To show this claim holds, let's suppose that $d|N_i$ and $d|n_i$ where $d \in \Z$. Since all $n_j$ are relatively prime, then $d$ must divide some $n$ in $N$ that is not $n_i$.
+
+		This implies that $d|n_j$ for $j \ne i$.
+
+		Since $d|n_i$ and $d|n_j$, by Definition~\ref{2.3} we have $d | \gcd(n_i, n_j)$ implying that $d|1$ which must mean $d=1$ proving our claim.
+	\end{quote}
+
+	Now, by Lemma~\ref{inverse} since $\gcd(N_i, n_i) = 1$, $N_i$ has an inverse $\Mod{n_i}$. Let $x_i$ be the said inverse such that
+
+	\begin{align*}
+		N_i &\equiv x_i^{-1} \Mod{n_i} \label{eq:3.1} \tag{3.1}\\
+		x_iN_i &\equiv 1 \Mod{n_i},
+	\end{align*}
+	and we note that 
+	\begin{equation*}
+		x_iN_i \equiv 0 \Mod{n_j} \text{ for } j \ne i \label{eq:3.2} \tag{3.2}.
+	\end{equation*}
+	We know this to be true because $N_i$ is made of a multiple of $n_j$, therefore, it follows that $x_iN_i$ would be congruent to $0 \Mod{n_j}$.
+
+	Now to construct the solution, consider $$x = X_1N_1b_1 + X_2N_2b_2 + \ldots + X_kN_kb_k$$ where each $b_i$ is obtained from the original system of linear congruences. To satisfy each of the said linear congruences, we have to consider $x$ to be modulo some $n_i$. With this there are two possible cases for a given term $(X_kN_kb_k)$. The first is when $k\ne i$, then with Equation~\ref{eq:3.2}, $X_kN_k$ will become 0 because $N_k | n_i$. The second case is when $k = i$, then with Equation~\ref{eq:3.1}, $X_kN_k$ will become 1 because $X_k$ is the modulo inverse; this leaves $(1 \cdot b_k)$. The result of $x$ when we consider it to be modulo some $n_i$ is
+	\begin{align*}
+		x &\equiv 0 + \ldots + 0 + X_iN_ib_i + 0 \ldots + 0 \Mod{n_i}\\
+		x &\equiv b_i \Mod{n_i} \text{,\quad for all } 1 \le i \le k.
+	\end{align*}
+
+	(Uniqueness)
+
+	Having constructed a solution in the form of $x$, to show it is unique, suppose $y$ and $z$ are both solutions which gives $y\equiv b_i \Mod{n_i}$ and $z \equiv b_i \Mod{n_i}$ for all $ 1 \le i \le k$. Subtracting $y$ from $z$ then gives
+
+	\begin{align*}
+		z-y &\equiv b_i \Mod{n_i} - b_i \Mod{n_i}\\
+		z-y &\equiv (b_i-b_i) \Mod{n_i}\\
+		z-y &\equiv 0 \Mod{n_i}.
+	\end{align*}
+	This implies that $n_i | (z-y)$ for $1 \le i \le k$ which means $(z-y)$ must be a multiple for all the $n_i$'s which are relatively prime, therefore, it must be a multiple of their product $N$. We can now rewrite this as $N | (z-y)$ and with Definition~\ref{congruent}, $N|(z-y)$ implies $$z \equiv y \Mod{N}.$$ This proves the uniqueness because given any two solutions, it must be that they are both congruent $\text{mod } N$, therefore, any solution will be congruent to the one that is already constructed.\cite{Penn}
+\end{proof}
+
+
+
+% State and write the proof of your theorem. It may be appropriate to give a lemma here as well. Be rigorous, and be sure to use \LaTeX\ theorem and proof environments. It is important that you write the proof \emph{in your own words}.
+ 
+
 
 \section{Applications and discussion}
 
-Describe at least one application or consequence of your theorem to mathematics or even to another field. If applicable, discuss open questions surrounding the theorem. Consider formulating a conjecture related to your theorem to which you don't know the answer, thereby highlighting directions for future research.
+There are several applications of the Chinese Remainder Theorem, though its main use is in the area of increasing efficiency. 
 
+One such example of its use is in the case of parallel computing. Suppose there is a large computation that involves the computer performing operations such as adding, subtracting, multiplying, and potentially dividing integers that a part of a finite set $S$ which will be given. What we can do is choose prime numbers $p_1, p_2, \ldots, p_r$ that do not divide any elements of $S$, and their product $p_1 \cdot p_2 \cdot \ldots \cdot p_r$ is larger than the answer of our computation. Then split the computation over $r$ processors, where the $i$th one computes the answer modulo $p_i$. Finally, we can use the Chinese Remainder Theorem to help combine the values to obtain the answer to the computation \cite{Uses}. 
+
+Another key area in which the theorem is widely used is in the field of Cryptography and the Rivest-Shamir-Adleman (RSA) cryptosystem as an optimization tool. To show the idea behind its utility for RSA, let $M$ be some message, $C$ be the ciphertext, $N=PQ$ be the RSA modulus, and $D$ be the decryption key. Computing $C^D$ requires a lot of processing power as $D$ is large, and doing any operations modulo $N$ are the same in that $N$ is large too. But with the theorem, we can find $M$ by splitting it into different messages like so,
+\begin{align*}
+	M_P &= M \text{ mod } P\\
+	M_Q &= M \text{ mod } Q.
+\end{align*}
+To compute $M_P$ and $M_Q$, we can use Fermat's Little Theorem which simply states that if $p$ is  prime number, then for any integer $a$, the number $a^p -a$ is an integer multiple of $p$; it is also expressed as $a^p \equiv a \Mod{p}.$ Solving, we find that 
+\begin{align*}
+	M_P &= M \text{ mod } P\\
+	&= (C^D \text{ mod } N) \text{ mod } P\\
+	&= C^D \text{ mod } P\\
+	&= C^{D \text{ mod } (P-1)} \text{ mod } P.
+\end{align*}
+
+Now, let $D_P = D \text{ mod } (P-1)$. We can then compute $D_P$ during the key generation to compute
+\begin{equation*}
+	M_P = C^{D_P} \text{ mod } P,
+\end{equation*}
+and this follows the same for $M_Q$\cite{Johann}. 
+
+% \begin{conjecture}
+% 	The Chinese Remainder Theorem can be extended such that for this system of congruences,
+% 	\begin{align*}
+% 		a_1x &\equiv b_1 \Mod{n_1}\\
+% 		a_2x &\equiv b_2 \Mod{n_2}\\
+% 		\vdots\\
+% 		a_kx &\equiv b_k \Mod{n_k}
+% 	\end{align*}
+% 	where now each system solution has a coefficient, and it has has a unique solution modulo $n_1 \cdot n_2 \cdot \ldots \cdot n_k$.
+% \end{conjecture}
+
+% Though I am not proving in this paper, there are a few observations that I can make. Seeing as though a requirement for the 
+
+% large numbers. Consider the sequence $a_{n+1} = a_n^2+(n+3)na_n, \quad a_0=1$, where the integers tend to grow fast with $n$ \cite{fulling}. If we were to want a computer to go ahead and calculate values for $a_n$ for $n \le 20$, then we receive: $$a_1 = 1, \quad a_2 = 5, \quad a_3 = 75, \quad a_5 = 48845925, \quad \ldots$$. However, what we find is since the $a_n$ is growing at such a rapid rate, the numbers will overflow the computer. If we were to be using longs which represents numbers with 32-bits, we can get a value up to $2^{32}-1$.
+
+
+% Describe at least one application or consequence of your theorem to mathematics or even to another field. If applicable, discuss open questions surrounding the theorem. Consider formulating a conjecture related to your theorem to which you don't know the answer, thereby highlighting directions for future research.
+
+% \newpage
 \begin{thebibliography}{10}
-
-\bibitem{ThisIsaLabel} It is important that you cite \emph{all} of the sources that you used to research your theorem and list them in a bibliography. Be sure to cite your sources in the body of your paper as well. You can do this by creating a label for the citation within the bibliography.
+\bibitem{sandeep}Bhatt, Sandeep. ``Lecture28\_29-1''. Stevens Institute of Technology, Department of Computer Science.
+\bibitem{elements-of-the-theory-of-number} Dence, Joseph B.; Dence, Thomas P. (1999), \textit{Elements of the Theory of Numbers}, Academic Press, ISBN 9780122091308.
+\bibitem{Johann}Großschädl, Johann. ``The Chinese Remainder Theorem and its Application in a High-Speed RSA Crypto Chip.'' ACSAC 2000: 384-393 \url{https://www.acsac.org/2000/papers/48.pdf}.
+\bibitem{Hausner} Hausner, Melvin. ``Quantitative Reasoning: Computers, Number Theory and Cryptography.'' New York University, Department of Mathematics. \url{https://www.math.nyu.edu/~hausner/congruence.pdf}.
+\bibitem{Ireland}Ireland, Kenneth; Rosen, Michael (1990), A Classical Introduction to Modern Number Theory (2nd ed.), Springer-Verlag, ISBN 0-387-97329-X.
+\bibitem{katz}Katz, Victor J. (1998), \textit{A History of Mathematics / An Introduction} (2nd ed.), Addison Wesley Longman, ISBN 978-0-321-01618-8.
+\bibitem{Khan}Khan Academy. ``Modular Inverses.'' \url{https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/modular-inverses}.
+\bibitem{Long}Long, Calvin T. (1972), \textit{Elementary Introduction to Number Theory} (2nd ed.), Lexington: D. C. Heath and Company, LCCN 77171950.
+\bibitem{Uses}Mathoverflow Contributors. ``Applications of the Chinese remainder theorem.'' Mathoverflow, \url{https://mathoverflow.net/questions/10014/applications-of-the-chinese-remainder-theorem}.
+\bibitem{Penn}Penn, Michael. ``Number Theory | Chinese Remainder Theorem Proof.'' Film, video. YouTube, 2019. \url{https://www.youtube.com/watch?v=EolotL9HN8k}.
+\bibitem{Reluga}Reluga, Tim. ``Linear Congruence Class Theory.'' Pennsylvania State University, Department of Mathematics. \url{http://www.personal.psu.edu/tcr2/311w/congruenceTheoremGuide.pdf}.
+\bibitem{extended}Wikipedia Contributors. ``Extended Euclidean Algorithm.'' Wikipedia, \url{https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm}.
+% \bibitem{ThisIsaLabel} It is important that you cite \emph{all} of the sources that you used to research your theorem and list them in a bibliography. Be sure to cite your sources in the body of your paper as well. You can do this by creating a label for the citation within the bibliography.
 
 \end{thebibliography}
+{\vspace*{\fill}}
+\textit{I pledge my honor that I have abided by the Stevens Honor System.} - Eric Altenburg
 
 \end{document}
