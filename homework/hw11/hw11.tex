@@ -53,7 +53,7 @@
 %Section A==============Change the values below to match your information==================
 \newcommand\NAME{Eric Altenburg}  % your name
 \newcommand\COURSE{MA-240}
-\newcommand\HWNUM{11}              % the homework number
+\newcommand\HWNUM{11 Corrections}              % the homework number
 %Section B==============Put your answers to the questions below here=======================
 
 % no need to restate the problem --- the graders know which problem is which,
@@ -105,10 +105,20 @@
 Prove that $f(x)$ is continuous if and only if $x$ is irrational.}
 
 \begin{proof}
-	($\Longrightarrow$) Let $x_0 \in \R$ be a rational number, then based on $f$, we know $f(x_0) > 0$. Since we know that there are many irrational numbers, we say there is a sequence $a_1, a_2, a_3, \ldots \in \R$ of irrational numbers such that $a_n$ approaches $x_0$ as $n$ approaches infinity. This then gives us $\Lim{n \rightarrow \infty} a_n = x_0$, however, we know that $\Lim{n \rightarrow \infty}f(a_n) = 0 \not = f(x_0)$. Therefore, this shows that $f$ is not continuous when $x_0$ is rational.
+	($\Longrightarrow$) Let $x_0 \in \R$ be a rational number, then based on $f$, we know $f(x_0) > 0$. Since we know the irrationals are dense in $\R$ including leading up to $x_0$, we say there is a sequence $a_1, a_2, a_3, \ldots \in \R$ of irrational numbers such that $a_n$ approaches $x_0$ as $n$ approaches infinity. This then gives us $\Lim{n \rightarrow \infty} a_n = x_0$, however, we know that $\Lim{n \rightarrow \infty}f(a_n) = 0 \not = f(x_0)$. Therefore, this shows that $f$ is not continuous when $x_0$ is rational.
 
-	($\Longleftarrow$) Let $x_0, x \in \R$ be irrational, and suppose that $\varepsilon > 0$. Then we can choose $y$ where $y > \frac{1}{\varepsilon}$ and $y \in \Z$. From this, we can define a range containing every irrational number where its denominator is less than $y$. With $\delta > 0$, the interval is $(x_0 - \delta, x_0 + \delta)$ which is a subset of $\R$. Now, if $x \in (x_0 - \delta, x_0 + \delta)$ and it is irrational, then $f(x)=0$. Additionally, if $x \in (x_0 - \delta, x_0 + \delta)$ and it is rational, then we have the inequality $0 < f(x) \le \frac{1}{y} < \varepsilon$. Regardless of whether or not $x$ is rational or irrational, we have that $|f(x)| < \varepsilon$. So with $x \in (x_0 - \delta, x_0 + \delta)$, $|x-x_0| < \delta$, and $|f(x)| < \varepsilon$, this implies $|f(x)-f(x_0)| < \varepsilon$. Therefore, this shows that $f$ is continuous at $x_0$.
+	($\Longleftarrow$) Let $x_0 \in \R$ be irrational, then $f(x_0)=0$. To show that $f$ is continuous at $x_0$ we then need to show that for all $\varepsilon > 0$, there exists a $\delta > 0$ where $|x-x_0| < \delta$ implies that $f(x) < \varepsilon$ for some $x$. 
+
+	Now, choose $y$ where $y > \frac{1}{\varepsilon}$ and $y \in \Z$. Among all the rational numbers, for any given $n$ where $n=\frac{p}{q}$ such that $q < y$, choose an $n_0$ whose distance is closest to $x_0$. With this, let $\delta$ be the distance from $x_0$ to the chosen rational number $n_0$. Then we can construct an interval $(x_0 - \delta, x_0 + \delta)$ where if $x \in (x_0 - \delta, x_0 + \delta)$, $x$ is either an irrational number or its denominator is greater than $y$. 
+
+	From this interval, if $x$ is irrational, then $f(x)=0$, but if $x$ is rational, then this forms the inequality $0 < f(x) \le \frac{1}{y} < \varepsilon$. Regardless of whether $x$ is rational or irrational, we note that $|f(x)| < \varepsilon$. Therefore, with $x \in (x_0 - \delta, x_0 + \delta)$, $|x-x_0|< \delta$, and $|f(x)| < \varepsilon$, this implies $|f(x) - f(x_0)| < \varepsilon$ proving that $f$ is continuous at $x_0$.
 \end{proof}
+	% Now consider the interval $(x_0-1, x_0+1)$. We know that there are a finite amount of rational numbers in the said interval such that for a rational number, call it $n$, it satisfies 
+
+	% , let $n$ be one of these rational numbers and we find that 
+
+	% Let $x_0,x \in \R$ be irrational and suppose that $\varepsilon > 0$. Then we can choose $y$ where $\varepsilon > \frac{1}{y}$ and $y \in \Z$. From this, we can define a range containing every irrational number where its denominator is less than $y$. With $\delta > 0$, the interval is $(x_0 - \delta, x_0 + \delta)$ which is a subset of $\R$. Now, if $x \in (x_0 - \delta, x_0 + \delta)$ and it is irrational, then $f(x)=0$. Additionally, if $x \in (x_0 - \delta, x_0 + \delta)$ and it is rational, then we have the inequality $0 < f(x) \le \frac{1}{y} < \varepsilon$. Regardless of whether or not $x$ is rational or irrational, we have that $|f(x)| < \varepsilon$. So with $x \in (x_0 - \delta, x_0 + \delta)$, $|x-x_0| < \delta$, and $|f(x)| < \varepsilon$, this implies $|f(x)-f(x_0)| < \varepsilon$. Therefore, this shows that $f$ is continuous at $x_0$.
+
 
 
 
